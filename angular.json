@@ -102,6 +102,37 @@
           }
         }
       }
+    },
+    "ngx-cookie-consent": {
+      "projectType": "library",
+      "root": "projects/ngx-cookie-consent",
+      "sourceRoot": "projects/ngx-cookie-consent/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-cookie-consent/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-cookie-consent/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-cookie-consent/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-cookie-consent/src/test.ts",
+            "tsConfig": "projects/ngx-cookie-consent/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-cookie-consent/karma.conf.js"
+          }
+        }
+      }
     }
   }
 }
