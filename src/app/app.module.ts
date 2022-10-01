@@ -5,6 +5,32 @@ import { NgxCookieConsentModule } from 'projects/ngx-cookie-consent/src/public-a
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+export const essentialCookies = [
+    {
+        key: 'essential_cookie_manager',
+        name: 'Essential Cookie Manager',
+        description: 'This cookie is used to manage the cookies on this website.',
+        privacyPolicyUrl: 'https://www.example.com/privacy-policy',
+        cookies: []
+    }
+];
+
+export const marketingCookies = [
+    {
+        key: 'marketing_google_analytics',
+        name: 'Google Analytics',
+        description: 'Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.',
+        privacyPolicyUrl: 'https://policies.google.com/privacy',
+        cookies: [
+            {
+                name: '_ga',
+                description: 'This cookie is used to distinguish users.',
+                duration: '2 years'
+            }
+        ]
+    }
+];
+
 @NgModule({
     declarations: [
         AppComponent
@@ -68,6 +94,8 @@ import { AppComponent } from './app.component';
                     ]
                 }
             ],
+            marketingCookies: marketingCookies,
+            essentialCookies: essentialCookies,
             otherTools: [
                 {
                     key: 'other_active_campaign',

@@ -40,15 +40,15 @@
             </div>
             <div class="ngx-cc__modal__footer text--center">
                 <div class="ngx-cc__modal__controls">
-                    <button class="secondary text--uppercase cc-deny">{{ translate('decline_text') }}</button>
-                    <button class="text--uppercase cc-accept-all">{{ translate('accept_text') }}</button>
+                    <button class="secondary text--uppercase cc-deny" (click)="denyAllCookies()">{{ translate('decline_text') }}</button>
+                    <button class="text--uppercase cc-accept-all" (click)="acceptAllCookies()">{{ translate('accept_text') }}</button>
                 </div>
             </div>
         </div>
         <div class="ngx-cc__modal" *ngIf="showSettingsDialog">
             <div class="ngx-cc__modal_back">
                 <div class="flex flex-start">
-                    <div class="back-button" title="{{ translate('back_text') }}" (click)="showSettingsDialog = false">
+                    <div class="back-button" title="{{ translate('back_text') }}" (click)="back()">
                         <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
                              text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
                              clip-rule="evenodd" viewBox="0 0 512 512">
@@ -79,7 +79,7 @@
                         </div>
                         <div class="block__item__controls">
                             <div class="checkbox checkbox--apple">
-                                <input type="checkbox" id="functional_cookies" name="functional_cookies" value="1">
+                                <input type="checkbox" id="functional_cookies" name="functional_cookies" value="1" [checked]="functionalCookiesAllSelected" (change)="toggle($event, 'functional')">
                                 <label for="functional_cookies"></label>
                             </div>
                         </div>
@@ -91,16 +91,16 @@
                             *ngIf="config('functionalCookies').length > 0"></i>
                         </div>
                     </div>
-                    <div class="block__items">
+                    <div class="block__items" [formGroup]="cookieForm">
                         <div class="block__item" *ngFor="let functional of config('functionalCookies')">
                             <div class="block__item__title">
                                 <h5>{{ functional.name }}</h5>
                                 <div class="text--tiny">{{ functional.description }}</div>
                                 <a class="text--link text--link--tiny" href="{{ functional.privacyPolicyUrl }}" target="_blank">{{ functional.privacyPolicyUrl }}</a>
                             </div>
-                            <div class="block__item__controls">
+                            <div class="block__item__controls" formGroupName="functional">
                                 <div class="checkbox checkbox--apple checkbox--tiny">
-                                    <input type="checkbox" id="{{ functional.key }}" name="{{ functional.key }}" value="1">
+                                    <input type="checkbox" id="{{ functional.key }}" formControlName="{{ functional.key }}" value="1">
                                     <label for="{{ functional.key }}"></label>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="block__item__controls">
                             <div class="checkbox checkbox--apple">
-                                <input type="checkbox" id="marketing_cookies" name="marketing_cookies" value="1">
+                                <input type="checkbox" id="marketing_cookies" name="marketing_cookies" value="1" [checked]="marketingCookiesAllSelected" (change)="toggle($event, 'marketing')">
                                 <label for="marketing_cookies"></label>
                             </div>
                         </div>
@@ -128,8 +128,20 @@
                             *ngIf="config('marketingCookies').length > 0"></i>
                         </div>
                     </div>
-                    <div class="block__items">
-                        ....
+                    <div class="block__items" [formGroup]="cookieForm">
+                        <div class="block__item" *ngFor="let marketing of config('marketingCookies')">
+                            <div class="block__item__title">
+                                <h5>{{ marketing.name }}</h5>
+                                <div class="text--tiny">{{ marketing.description }}</div>
+                                <a class="text--link text--link--tiny" href="{{ marketing.privacyPolicyUrl }}" target="_blank">{{ marketing.privacyPolicyUrl }}</a>
+                            </div>
+                            <div class="block__item__controls" formGroupName="marketing">
+                                <div class="checkbox checkbox--apple checkbox--tiny">
+                                    <input type="checkbox" id="{{ marketing.key }}" formControlName="{{ marketing.key }}" value="1">
+                                    <label for="{{ marketing.key }}"></label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -154,7 +166,19 @@
                         </div>
                     </div>
                     <div class="block__items">
-                        ....
+                        <div class="block__item" *ngFor="let essential of config('essentialCookies')">
+                            <div class="block__item__title">
+                                <h5>{{ essential.name }}</h5>
+                                <div class="text--tiny">{{ essential.description }}</div>
+                                <a class="text--link text--link--tiny" href="{{ essential.privacyPolicyUrl }}" target="_blank">{{ essential.privacyPolicyUrl }}</a>
+                            </div>
+                            <div class="block__item__controls">
+                                <div class="checkbox checkbox--apple checkbox--tiny">
+                                    <input type="checkbox" id="{{ essential.key }}" name="{{ essential.key }}" value="1" checked disabled>
+                                    <label for="{{ essential.key }}"></label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -197,9 +221,9 @@
             </div>
             <div class="ngx-cc__modal__footer text--center">
                 <div class="ngx-cc__modal__controls">
-                    <button class="secondary text--uppercase cc-accept-some">{{ translate('save_text') }}</button>
+                    <button class="secondary text--uppercase cc-accept-some" (click)="saveSomeCookies()">{{ translate('save_text') }}</button>
                     <button class="text--uppercase cc-deny" (click)="denyAllCookies()">{{ translate('decline_text') }}</button>
-                    <button class="text--uppercase cc-accept-all">{{ translate('accept_text') }}</button>
+                    <button class="text--uppercase cc-accept-all" (click)="acceptAllCookies()">{{ translate('accept_text') }}</button>
                 </div>
             </div>
         </div>

@@ -5,13 +5,16 @@ import { NgxCookieConsentComponent } from './ngx-cookie-consent.component';
 import { NgxCookieConsentService } from './services/ngx-cookie-consent/ngx-cookie-consent.service';
 import { NgxCookieService } from './services/ngx-cookie/ngx-cookie.service';
 import { NgxLanguageService } from './services/ngx-language/ngx-language.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
         NgxCookieConsentComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     exports: [
         NgxCookieConsentComponent
