@@ -50,12 +50,12 @@ export class NgxCookieConsentService {
         this.cookieService.set(this.getPrefixedCookieName('status'), status, this.getConfig('cookieExpiryDays'));
     }
 
-    setCookieConsentStatusForCookie(category: string, status: boolean) {
+    setCookieConsentStatusForCookie(name: string, status: boolean): void {
         if (!status) {
-            return this.cookieService.delete(this.getPrefixedCookieName(category));
+            return this.cookieService.delete(this.getPrefixedCookieName(name));
         }
 
-        this.cookieService.set(this.getPrefixedCookieName(category), status, this.getConfig('cookieExpiryDays'));
+        this.cookieService.set(this.getPrefixedCookieName(name), status, this.getConfig('cookieExpiryDays'));
     }
 
     shouldDisplayCookieConsent(): boolean {
@@ -88,7 +88,7 @@ export class NgxCookieConsentService {
         this.setCookieConsentStatus(true);
     }
 
-    saveSomeCookies(cookies: { functional: any[], marketing: any[] } ): void {
+    saveSomeCookies(cookies: { functional: any, marketing: any } ): void {
         Object.keys(cookies.functional).forEach((cookie: any) => {
             this.setCookieConsentStatusForCookie(cookie, cookies.functional[cookie]);
         });
