@@ -7,7 +7,7 @@ import { NgxCookieConsentService } from './services/ngx-cookie-consent/ngx-cooki
     templateUrl: './ngx-cookie-consent.component.html',
     styleUrls: ['./ngx-cookie-consent.component.scss']
 })
-export class NgxCookieConsentComponent implements OnInit {
+export class NgxCookieConsentComponent {
     cookieConsentVisible = false;
     showSettingsDialog = false;
     dropDownOpen = false;
@@ -28,29 +28,6 @@ export class NgxCookieConsentComponent implements OnInit {
         this.cookieConsentVisible = this.consentService.shouldDisplayCookieConsent();
         this.cookieFields = this.consentService.getCookieFields();
         this.cookieForm = this.buildForm();
-    }
-
-    private buildForm(): FormGroup {
-        return this.formBuilder.group({
-            functional: this.buildCookieFields(this.cookieFields.functional),
-            marketing: this.buildCookieFields(this.cookieFields.marketing),
-        });
-    }
-
-    ngOnInit(): void {
-    }
-
-    translate(key: string, translationLang?: string): string {
-        return this.consentService.getTranslation(key, translationLang);
-    }
-
-    config(key: string) {
-        return this.consentService.getConfig(key);
-    }
-
-    switchLanguage(lang: string) {
-        this.dropDownOpen = false;
-        this.consentService.setLanguage(lang);
     }
 
     get activeLang(): string {
@@ -89,16 +66,17 @@ export class NgxCookieConsentComponent implements OnInit {
         return arr.every(value => value === true);
     }
 
+    translate(key: string, translationLang?: string): string {
+        return this.consentService.getTranslation(key, translationLang);
+    }
 
+    config(key: string) {
+        return this.consentService.getConfig(key);
+    }
 
-
-    private buildCookieFields(fields: { key: string, selected: boolean }[]) {
-        const group: any = {};
-        fields.forEach(field => {
-            group[field.key] = this.formBuilder.control(field.selected);
-        });
-
-        return this.formBuilder.group(group);
+    switchLanguage(lang: string) {
+        this.dropDownOpen = false;
+        this.consentService.setLanguage(lang);
     }
 
     toggle($event: any, category: string) {
@@ -113,6 +91,39 @@ export class NgxCookieConsentComponent implements OnInit {
         this.showSettingsDialog = false
         this.resetDropdowns();
         this.resetForm();
+    }
+
+    denyAllCookies() {
+        this.resetModal();
+        this.consentService.denyAllCookies();
+        this.resetForm();
+    }
+
+    acceptAllCookies() {
+        this.resetModal();
+        this.consentService.acceptAllCookies();
+        this.resetForm();
+    }
+
+    saveSomeCookies() {
+        this.consentService.saveSomeCookies(this.cookieForm.value);
+        this.resetModal();
+    }
+
+    private buildForm(): FormGroup {
+        return this.formBuilder.group({
+            functional: this.buildCookieFields(this.cookieFields.functional),
+            marketing: this.buildCookieFields(this.cookieFields.marketing),
+        });
+    }
+
+    private buildCookieFields(fields: { key: string, selected: boolean }[]) {
+        const group: any = {};
+        fields.forEach(field => {
+            group[field.key] = this.formBuilder.control(field.selected);
+        });
+
+        return this.formBuilder.group(group);
     }
 
     private resetForm() {
@@ -138,22 +149,5 @@ export class NgxCookieConsentComponent implements OnInit {
         this.cookieConsentVisible = false;
         this.showSettingsDialog = false;
         this.resetDropdowns();
-    }
-
-    denyAllCookies() {
-        this.resetModal();
-        this.consentService.denyAllCookies();
-        this.resetForm();
-    }
-
-    acceptAllCookies() {
-        this.resetModal();
-        this.consentService.acceptAllCookies();
-        this.resetForm();
-    }
-
-    saveSomeCookies() {
-        this.consentService.saveSomeCookies(this.cookieForm.value);
-        this.resetModal();
     }
 }

@@ -10,7 +10,7 @@ export class NgxCookieConsentConfigService {
     availableLanguages?: string[] = ['en', 'de'];
     showLanguageSwitcher?: boolean = true;
     showBadgeOpener?: boolean = true;
-    closedPosition?: 'left-top' | 'right-top' | 'left-bottom' | 'right-bottom' = 'left-bottom';
+    openerPosition?: 'left-top' | 'right-top' | 'left-bottom' | 'right-bottom' = 'left-bottom';
     customClass?: string = '';
     cookiePrefix?: string = 'cookieconsent_';
     cookieExpiryDays?: number = 365;

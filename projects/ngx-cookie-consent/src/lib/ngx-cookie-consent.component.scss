@@ -46,10 +46,24 @@
             right: 0;
         }
 
+        &-right-top {
+            padding: 12px 6px 12px 8px;
+            border-radius: 8px 0 0 8px;
+            top: 20px;
+            right: 0;
+        }
+
         &-left-bottom {
             padding: 12px 8px 12px 6px;
             border-radius: 0 8px 8px 0;
             bottom: 20px;
+            left: 0;
+        }
+
+        &-left-top {
+            padding: 12px 8px 12px 6px;
+            border-radius: 0 8px 8px 0;
+            top: 20px;
             left: 0;
         }
     }
