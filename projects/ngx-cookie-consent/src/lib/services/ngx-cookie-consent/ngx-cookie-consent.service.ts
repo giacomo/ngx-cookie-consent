@@ -17,30 +17,36 @@ export class NgxCookieConsentService {
         this.activeLang = this.getConfig('defaultLanguage');
     }
 
-    setLanguage(lang: string) {
-        this.activeLang = lang;
-        this.setConfig('defaultLanguage', lang);
-    }
-
     getTranslation(key: string, translationLang?: string): string {
         const lang = translationLang || this.activeLang;
         return this.languageService.getTranslation(key, lang);
     }
 
-
-    getConfig(key: string) {
+    getConfig(key: string): any {
         return (this.cookieConsentConfig as any)[key];
     }
 
-    setConfig(key: string, value: string) {
+    getPrefixedCookieName(name: string): string {
+        return this.getConfig('cookiePrefix') + name;
+    }
+
+    getCookieFields(): {functional: {key: string, selected: boolean}[], marketing: {key: string, selected: boolean}[]} {
+        const functionalCookies = this.getCookiesByCategory('functionalCookies');
+        const marketingCookies = this.getCookiesByCategory('marketingCookies');
+
+        return {functional: functionalCookies, marketing: marketingCookies};
+    }
+
+    setLanguage(lang: string): void {
+        this.activeLang = lang;
+        this.setConfig('defaultLanguage', lang);
+    }
+
+    setConfig(key: string, value: string): void {
         (this.cookieConsentConfig as any)[key] = value;
     }
 
-    shouldDisplayCookieConsent() {
-        return !this.cookieService.get(this.getPrefixedCookieName('status'));
-    }
-
-    setCookieConsentStatus(status: boolean) {
+    setCookieConsentStatus(status: boolean): void {
         this.cookieService.set(this.getPrefixedCookieName('status'), status, this.getConfig('cookieExpiryDays'));
     }
 
@@ -52,11 +58,11 @@ export class NgxCookieConsentService {
         this.cookieService.set(this.getPrefixedCookieName(category), status, this.getConfig('cookieExpiryDays'));
     }
 
-    getPrefixedCookieName(name: string) {
-        return this.getConfig('cookiePrefix') + name;
+    shouldDisplayCookieConsent(): boolean {
+        return !this.cookieService.get(this.getPrefixedCookieName('status'));
     }
 
-    acceptAllCookies() {
+    acceptAllCookies(): void {
         const cookies = [
             ...this.getConfig('functionalCookies').map((cookie: any) => cookie.key),
             ...this.getConfig('marketingCookies').map((cookie: any) => cookie.key),
@@ -69,7 +75,7 @@ export class NgxCookieConsentService {
         this.setCookieConsentStatus(true);
     }
 
-    denyAllCookies() {
+    denyAllCookies(): void {
         const cookies = [
             ...this.getConfig('functionalCookies').map((cookie: any) => cookie.key),
             ...this.getConfig('marketingCookies').map((cookie: any) => cookie.key),
@@ -82,23 +88,7 @@ export class NgxCookieConsentService {
         this.setCookieConsentStatus(true);
     }
 
-    getCookieFields() {
-        const functionalCookies = this.getCookiesByCategory('functionalCookies');
-        const marketingCookies = this.getCookiesByCategory('marketingCookies');
-
-        return {functional: functionalCookies, marketing: marketingCookies};
-    }
-
-    private getCookiesByCategory(category: string) {
-        return this.getConfig(category).map((cookie: any) => {
-            return {
-                key: cookie.key,
-                selected: this.cookieService.get(this.getPrefixedCookieName(cookie.key)) === true
-            };
-        });
-    }
-
-    saveSomeCookies(cookies: { functional: any[], marketing: any[] } ) {
+    saveSomeCookies(cookies: { functional: any[], marketing: any[] } ): void {
         Object.keys(cookies.functional).forEach((cookie: any) => {
             this.setCookieConsentStatusForCookie(cookie, cookies.functional[cookie]);
         });
@@ -108,5 +98,14 @@ export class NgxCookieConsentService {
         });
 
         this.setCookieConsentStatus(true);
+    }
+
+    private getCookiesByCategory(category: string): {key: string, selected: boolean}[] {
+        return this.getConfig(category).map((cookie: any) => {
+            return {
+                key: cookie.key,
+                selected: this.cookieService.get(this.getPrefixedCookieName(cookie.key)) === true
+            };
+        });
     }
 }
