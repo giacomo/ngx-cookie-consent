@@ -64,8 +64,6 @@ export class NgxCookieService {
           return;
       }
 
-      value = JSON.stringify(value);
-
       let cookieString: string = encodeURIComponent( name ) + '=' + encodeURIComponent( value ) + ';';
 
       const dateExpires: Date = new Date( new Date().getTime() + expiringDays * 86400000);
