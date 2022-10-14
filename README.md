@@ -1,27 +1,74 @@
-# LibraryWorkspace
+# ngx-cookie-consent
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
+Angular module to display a cookie consent banner without other dependencies.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Install the package via npm:
+```bash
+npm install ngx-cookie-consent --save
+```
 
-## Code scaffolding
+### Install the package with yarn:
+```bash
+yarn add ngx-cookie-consent
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
 
-## Build
+### Import the module
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```typescript
+import { NgxCookieConsentModule } from 'ngx-cookie-consent';
 
-## Running unit tests
+// use your configuration or leave it empty
+const cookieConfig = {};
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  imports: [
+    NgxCookieConsentModule.forRoot(cookieConfig),
+  ],
+})
+```
 
-## Running end-to-end tests
+### Add the component to your template as example app.component.html
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```html
+<ngx-cookie-consent></ngx-cookie-consent>
+<router-outlet></router-outlet>
+```
 
-## Further help
+## Configuration
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+| Name                  | Type     | Default          | Description                                                                        |
+|-----------------------|----------|------------------|------------------------------------------------------------------------------------|
+| privacyPolicyUrl      | string   | '#'              | URL to your privacy policy ⚠ required ⚠                                            |
+| imprintUrl            | string   | '#'              | URL to your imprint ⚠ required ⚠                                                   |
+| defaultLanguage       | string   | 'en'             | Default language for the cookie consent banner                                     |
+| availableLanguages    | string[] | ['en', 'de']     | Available languages for the cookie consent banner                                  |
+| showLanguageSwitcher  | boolean  | true             | Show language switcher                                                             |
+| showBadgeOpener       | boolean  | true             | Show badge opener                                                                  |
+| openerPosition        | enum     | 'left-bottom'    | Position of the badge eg. 'left-top', 'right-top' , 'left-bottom' , 'right-bottom' |
+| customClass           | string   | ''               | Custom class for the cookie consent banner                                         |
+| cookiePrefix          | string   | 'cookieconsent_' | Prefix for the cookie consent banner                                               |
+| cookieExpiryDays      | number   | 365              | Expiry days for the cookie consent banner                                          |
+| showCookieDetails     | boolean  | false            | Show cookie details                                                                |
+| showFunctionalCookies | boolean  | true             | Show functional cookies                                                            |
+| functionalCookies     | any[]    | []               | Functional cookies                                                                 |
+| showMarketingCookies  | boolean  | true             | Show marketing cookies                                                             |
+| marketingCookies      | any[]    | []               | Marketing cookies                                                                  |
+| showEssentialCookies  | boolean  | true             | Show essential cookies                                                             |
+| essentialCookies      | any[]    | []               | Essential cookies                                                                  |
+| showOtherTools        | boolean  | true             | Show other tools                                                                   |
+| otherTools            | any[]    | []               | Other tools                                                                        |
+| excludeRoutes         | string[] | []               | Exclude routes eg. ['/privacy-policy']                                             |
+
+
+
+## Contributing
+
+This project has a maintainer that actively monitors its issue queue and responds in a timely manner. This means that bug reports, tasks, feature requests and support request posted in the project's issue should receive timely attention from project's maintainers. Other community members are also welcome to resolve issues posted to the issue queue.
+
+## License
+
+ngx-cookie-consent is licensed under the [MIT license](http://opensource.org/licenses/MIT).
