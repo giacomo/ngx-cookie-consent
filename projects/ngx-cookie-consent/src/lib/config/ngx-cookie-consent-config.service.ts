@@ -23,5 +23,6 @@ export class NgxCookieConsentConfigService {
     essentialCookies?: any[] = [];
     showOtherTools?: boolean = true;
     otherTools?: any[] = [];
+    excludeRoutes?: string[] = [];
 
 }

@@ -10,7 +10,7 @@ export const lang_de: { [key: string]: string } = {
     functional_title: 'Funktional',
     functional_description: 'Diese Cookies ermöglichen es uns, die Nutzung der Website zu analysieren, so dass wir ihre Leistung messen und verbessern können.',
     marketing_title: 'Marketing',
-    marketing_description: 'Marketing-Cookies werden in der Regel verwendet, um Ihnen Werbung zu zeigen, die Ihren Interessen entspricht. Wenn Sie eine andere Website besuchen, wird das Cookie Ihres Browsers erkannt, und Ihnen wird auf der Grundlage der in diesem Cookie gespeicherten Informationen ausgewählte Werbung angezeigt (Art. 6 Abs. 1 S. 1 a) GDPR).',
+    marketing_description: 'Marketing-Cookies werden in der Regel verwendet, um Ihnen Werbung zu zeigen, die Ihren Interessen entspricht. Wenn Sie eine andere Website besuchen, wird das Cookie Ihres Browsers erkannt, und Ihnen wird auf der Grundlage der in diesem Cookie gespeicherten Informationen ausgewählte Werbung angezeigt (Art. 6 Abs. 1 S. 1 a) DSGVO).',
     essential_title: 'Erforderlich',
     essential_description: 'Diese Cookies sind für die Grundfunktionen der Website erforderlich.',
     other_title: 'Andere',

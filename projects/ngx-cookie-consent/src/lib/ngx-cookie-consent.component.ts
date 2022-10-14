@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgxCookieConsentService } from './services/ngx-cookie-consent/ngx-cookie-consent.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
     selector: 'ngx-cookie-consent',
     templateUrl: './ngx-cookie-consent.component.html',
     styleUrls: ['./ngx-cookie-consent.component.scss']
 })
-export class NgxCookieConsentComponent {
+export class NgxCookieConsentComponent implements OnInit {
     cookieConsentVisible = false;
     showSettingsDialog = false;
     dropDownOpen = false;
@@ -22,10 +24,11 @@ export class NgxCookieConsentComponent {
     };
 
     constructor(
+        private router: Router,
         private consentService: NgxCookieConsentService,
         private formBuilder: FormBuilder
     ) {
-        this.cookieConsentVisible = this.consentService.shouldDisplayCookieConsent();
+        // this.cookieConsentVisible = this.consentService.shouldDisplayCookieConsent();
         this.cookieFields = this.consentService.getCookieFields();
         this.cookieForm = this.buildForm();
     }
@@ -149,5 +152,23 @@ export class NgxCookieConsentComponent {
         this.cookieConsentVisible = false;
         this.showSettingsDialog = false;
         this.resetDropdowns();
+    }
+
+    ngOnInit(): void {
+        this.router.events.pipe(
+            filter(event => event instanceof NavigationEnd)
+        ).subscribe({
+                next: (event: any) => {
+                    const excludedRoutes = this.consentService.getConfig('excludeRoutes');
+                    const realPath = event.urlAfterRedirects.split('?')[0];
+
+                    if (excludedRoutes.includes(realPath)) {
+                        this.cookieConsentVisible = false;
+                    } else {
+                        this.cookieConsentVisible = this.consentService.shouldDisplayCookieConsent();
+                    }
+                },
+            }
+        );
     }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Location } from '@angular/common';
 import { NgxCookieConsentConfigService } from '../../config/ngx-cookie-consent-config.service';
 import { NgxCookieService } from '../ngx-cookie/ngx-cookie.service';
 import { NgxLanguageService } from '../ngx-language/ngx-language.service';

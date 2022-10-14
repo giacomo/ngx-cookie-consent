@@ -6,6 +6,7 @@ import { NgxCookieConsentService } from './services/ngx-cookie-consent/ngx-cooki
 import { NgxCookieService } from './services/ngx-cookie/ngx-cookie.service';
 import { NgxLanguageService } from './services/ngx-language/ngx-language.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -13,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ],
     imports: [
         CommonModule,
+        RouterModule,
         FormsModule,
         ReactiveFormsModule,
     ],

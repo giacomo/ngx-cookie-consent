@@ -3,10 +3,19 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgxCookieConsentComponent } from './ngx-cookie-consent.component';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxCookieConsentService } from './services/ngx-cookie-consent/ngx-cookie-consent.service';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { Subject } from 'rxjs';
 
 describe('NgxCookieConsentComponent', () => {
     let component: NgxCookieConsentComponent;
     let fixture: ComponentFixture<NgxCookieConsentComponent>;
+
+    const eventSubject = new Subject<RouterEvent>();
+    const routerMock = {
+        navigate: jasmine.createSpy('navigate'),
+        events: eventSubject.asObservable(),
+        url: '/'
+    };
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -14,7 +23,10 @@ describe('NgxCookieConsentComponent', () => {
                 FormsModule,
                 ReactiveFormsModule,
             ],
-            declarations: [NgxCookieConsentComponent]
+            declarations: [NgxCookieConsentComponent],
+            providers: [
+                {provide: Router, useValue: routerMock},
+            ],
         })
             .compileComponents();
 
@@ -29,7 +41,7 @@ describe('NgxCookieConsentComponent', () => {
 
     it('should have default values', () => {
         expect(component.cookieForm).toBeTruthy();
-        expect(component.cookieConsentVisible).toBeTrue();
+        expect(component.cookieConsentVisible).toBeFalse();
         expect(component.showSettingsDialog).toBeFalse();
         expect(component.dropDownOpen).toBeFalse();
         expect(component.functionalCookiesClosed).toBeTrue();
@@ -278,6 +290,24 @@ describe('NgxCookieConsentComponent', () => {
         expect((component as any).resetModal).toHaveBeenCalled();
         expect(consentServiceMock.saveSomeCookies).toHaveBeenCalled();
         expect(consentServiceMock.saveSomeCookies).toHaveBeenCalledWith(component.cookieForm.value);
+    });
+
+    it('should not display the modal if route is excluded', () => {
+        const configMock = TestBed.inject(NgxCookieConsentService);
+        spyOn(configMock, 'getConfig').and.returnValue(['/excluded']);
+
+        eventSubject.next(new NavigationEnd(0, '/excluded', '/excluded'));
+
+        expect(component.cookieConsentVisible).toBeFalse();
+    });
+
+    it('should display the modal if route is not excluded', () => {
+        const configMock = TestBed.inject(NgxCookieConsentService);
+        spyOn(configMock, 'getConfig').and.returnValue(['/excluded']);
+
+        eventSubject.next(new NavigationEnd(0, '/visible', '/visible'));
+
+        expect(component.cookieConsentVisible).toBeTrue();
     });
 
 });
