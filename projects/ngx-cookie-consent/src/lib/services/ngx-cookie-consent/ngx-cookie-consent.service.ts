@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Location } from '@angular/common';
 import { NgxCookieConsentConfigService } from '../../config/ngx-cookie-consent-config.service';
 import { NgxCookieService } from '../ngx-cookie/ngx-cookie.service';
 import { NgxLanguageService } from '../ngx-language/ngx-language.service';
+import { NgxCookieManagerService } from '../ngx-cookie-manager/ngx-cookie-manager.service';
 
 @Injectable({
     providedIn: 'root'
@@ -11,6 +11,7 @@ export class NgxCookieConsentService {
     activeLang = 'en';
 
     constructor(
+        private cookieManagerService: NgxCookieManagerService,
         private cookieService: NgxCookieService,
         private cookieConsentConfig: NgxCookieConsentConfigService,
         private languageService: NgxLanguageService
@@ -49,9 +50,18 @@ export class NgxCookieConsentService {
 
     setCookieConsentStatus(status: boolean): void {
         this.cookieService.set(this.getPrefixedCookieName('status'), status, this.getConfig('cookieExpiryDays'));
+        this.cookieManagerService.cookieUpdated$.next({
+            name: 'status',
+            state: status
+        });
     }
 
     setCookieConsentStatusForCookie(name: string, status: boolean): void {
+        this.cookieManagerService.cookieUpdated$.next({
+            name,
+            state: status
+        });
+
         if (!status) {
             return this.cookieService.delete(this.getPrefixedCookieName(name));
         }
@@ -103,9 +113,12 @@ export class NgxCookieConsentService {
 
     private getCookiesByCategory(category: string): {key: string, selected: boolean}[] {
         return this.getConfig(category).map((cookie: any) => {
+            const cookieKey = cookie.key;
+            const cookieState = this.cookieService.get(this.getPrefixedCookieName(cookie.key)) === true;
+
             return {
-                key: cookie.key,
-                selected: this.cookieService.get(this.getPrefixedCookieName(cookie.key)) === true
+                key: cookieKey,
+                selected: cookieState
             };
         });
     }

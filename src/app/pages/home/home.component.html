@@ -9,6 +9,13 @@
             <li><a [routerLink]="'about'">About</a></li>
         </ul>
     </div>
+
+    <div *ngxIfConsent="'functional_google_maps'">
+        This content is only visible if functional_google_maps consent is given.
+    </div>
+    <div *ngxIfConsent="'marketing_google_analytics'">
+        This content is only visible if marketing_google_analytics consent is given.
+    </div>
 </div>
 
 

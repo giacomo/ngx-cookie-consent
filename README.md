@@ -32,11 +32,20 @@ import { NgxCookieConsentModule } from 'ngx-cookie-consent';
 })
 ```
 
-### Add the component to your template as example app.component.html
+### Add the cookie consent component to your template at the top for all pages eg. app.component.html
 
 ```html
 <ngx-cookie-consent></ngx-cookie-consent>
 <router-outlet></router-outlet>
+```
+
+### Usage in templates to check if the user has accepted the cookie consent
+
+```html
+<div *ngxIfConsent="'functional_google_maps'">
+    This content is only visible if functional_google_maps consent is given.
+    (In this example functional_google_maps is the name of the cookie configured in the config object)
+</div>
 ```
 
 ## Configuration

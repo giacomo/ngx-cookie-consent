@@ -28,7 +28,6 @@ export class NgxCookieConsentComponent implements OnInit {
         private consentService: NgxCookieConsentService,
         private formBuilder: FormBuilder
     ) {
-        // this.cookieConsentVisible = this.consentService.shouldDisplayCookieConsent();
         this.cookieFields = this.consentService.getCookieFields();
         this.cookieForm = this.buildForm();
     }

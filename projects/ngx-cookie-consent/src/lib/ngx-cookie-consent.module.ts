@@ -7,10 +7,13 @@ import { NgxCookieService } from './services/ngx-cookie/ngx-cookie.service';
 import { NgxLanguageService } from './services/ngx-language/ngx-language.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgxCookieManagerService } from './services/ngx-cookie-manager/ngx-cookie-manager.service';
+import { IfConsentDirective } from './directives/if-consent/if-consent.directive';
 
 @NgModule({
     declarations: [
-        NgxCookieConsentComponent
+        NgxCookieConsentComponent,
+        IfConsentDirective,
     ],
     imports: [
         CommonModule,
@@ -19,7 +22,8 @@ import { RouterModule } from '@angular/router';
         ReactiveFormsModule,
     ],
     exports: [
-        NgxCookieConsentComponent
+        NgxCookieConsentComponent,
+        IfConsentDirective,
     ]
 })
 export class NgxCookieConsentModule {
@@ -37,6 +41,7 @@ export class NgxCookieConsentModule {
                 NgxCookieConsentService,
                 NgxCookieService,
                 NgxLanguageService,
+                NgxCookieManagerService,
             ]
         };
     }

@@ -75,6 +75,13 @@ export const functionalCookies = [
                 duration: '24 hours',
             }
         ]
+    },
+    {
+        key: 'functional_google_maps',
+        name: 'Google Maps',
+        description: 'Google Maps is a web mapping service developed by Google.',
+        privacyPolicyUrl: 'https://policies.google.com/privacy',
+        cookies: []
     }
 ];
 
