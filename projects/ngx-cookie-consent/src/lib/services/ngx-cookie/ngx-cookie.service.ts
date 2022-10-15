@@ -69,6 +69,7 @@ export class NgxCookieService {
       const dateExpires: Date = new Date( new Date().getTime() + expiringDays * 86400000);
       cookieString += 'expires=' + dateExpires.toUTCString() + ';';
       cookieString += 'path=' + path + ';';
+      cookieString += 'SameSite=None; Secure';
 
       this.document.cookie = cookieString;
   }
