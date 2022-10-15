@@ -89,7 +89,6 @@ export const otherTools = [
                 name: '_act',
                 description: 'This cookie is used to distinguish users.',
                 duration: '2 years',
-                privacyPolicyUrl: 'https://www.activecampaign.com/privacy-policy',
             }
         ]
     },

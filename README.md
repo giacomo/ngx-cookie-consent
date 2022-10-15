@@ -22,11 +22,12 @@ yarn add ngx-cookie-consent
 import { NgxCookieConsentModule } from 'ngx-cookie-consent';
 
 // use your configuration or leave it empty
-const cookieConfig = {};
+// const cookieConfig = {};
 
 @NgModule({
   imports: [
-    NgxCookieConsentModule.forRoot(cookieConfig),
+    // using own configuration pass the config object  
+    NgxCookieConsentModule.forRoot(),
   ],
 })
 ```
@@ -54,16 +55,32 @@ const cookieConfig = {};
 | cookieExpiryDays      | number   | 365              | Expiry days for the cookie consent banner                                          |
 | showCookieDetails     | boolean  | false            | Show cookie details                                                                |
 | showFunctionalCookies | boolean  | true             | Show functional cookies                                                            |
-| functionalCookies     | any[]    | []               | Functional cookies                                                                 |
+| functionalCookies     | CookieItem[]    | []               | Functional cookies                                                                 |
 | showMarketingCookies  | boolean  | true             | Show marketing cookies                                                             |
-| marketingCookies      | any[]    | []               | Marketing cookies                                                                  |
+| marketingCookies      | CookieItem[]    | []               | Marketing cookies                                                                  |
 | showEssentialCookies  | boolean  | true             | Show essential cookies                                                             |
-| essentialCookies      | any[]    | []               | Essential cookies                                                                  |
+| essentialCookies      | CookieItem[]    | []               | Essential cookies                                                                  |
 | showOtherTools        | boolean  | true             | Show other tools                                                                   |
-| otherTools            | any[]    | []               | Other tools                                                                        |
+| otherTools            | CookieItem[]    | []               | Other tools                                                                        |
 | excludeRoutes         | string[] | []               | Exclude routes eg. ['/privacy-policy']                                             |
 
+### CookieItem interface
 
+| Name        | Type   | Description                                                                                                                         |
+|-------------|--------|-------------------------------------------------------------------------------------------------------------------------------------|
+|key           | string | Key for the cookie eg. 'functional_google_analytics'                                                                                |
+|name          | string | Name for the cookie eg. 'Google Analytics'                                                                                          |
+|description   | string | Description for the cookie eg. 'Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.' |
+|privacyPolicyUrl| string | URL to the privacy policy for the cookie eg. 'https://policies.google.com/privacy'                                                  |
+|cookies      | CookieDetail[] | Cookie details for the cookie                                 |
+
+### CookieDetail interface
+
+| Name        | Type   | Description                                                                 |
+|-------------|--------|-----------------------------------------------------------------------------|
+|name          | string | Name for the saved cookie eg. '_ga'                                         |
+|description   | string | Description for the saved cookie eg. 'This cookie is used to distinguish users.'                     |
+|duration      | string | Duration for the saved cookie eg. '2 years'                                 |
 
 ## Contributing
 

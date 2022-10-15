@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CookieItem } from './cookie-item.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -16,12 +17,12 @@ export class NgxCookieConsentConfigService {
     cookieExpiryDays?: number = 365;
     showCookieDetails?: boolean = false;
     showFunctionalCookies?: boolean = true;
-    functionalCookies?: any[] = [];
+    functionalCookies?: CookieItem[] = [];
     showMarketingCookies?: boolean = true;
-    marketingCookies?: any[] = [];
+    marketingCookies?: CookieItem[] = [];
     showEssentialCookies?: boolean = true;
-    essentialCookies?: any[] = [];
+    essentialCookies?: CookieItem[] = [];
     showOtherTools?: boolean = true;
-    otherTools?: any[] = [];
+    otherTools?: CookieItem[] = [];
     excludeRoutes?: string[] = [];
 }

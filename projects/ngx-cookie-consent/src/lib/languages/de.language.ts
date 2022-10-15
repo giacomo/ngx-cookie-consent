@@ -20,4 +20,7 @@ export const lang_de: { [key: string]: string } = {
     decline_text: 'Ablehnen',
     choose_language_text: 'Sprache wählen',
     back_text: 'Zurück',
+    cookie_name: 'Name',
+    cookie_description: 'Beschreibung',
+    cookie_duration: 'Dauer',
 };

@@ -28,6 +28,7 @@ import { RouterModule } from '@angular/router';
             marketingCookies: marketingCookies,
             essentialCookies: essentialCookies,
             otherTools: otherTools,
+            showCookieDetails: true,
             excludeRoutes: ['/about']
         }),
     ],
