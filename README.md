@@ -1,6 +1,9 @@
-# ngx-cookie-consent
+# @localia/ngx-cookie-consent
 
 Angular module to display a cookie consent banner without other dependencies.
+
+[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https:///pr.new/github.com/giacomo/ngx-cookie-consent)
+
 
 ## Installation
 
@@ -25,10 +28,10 @@ import { NgxCookieConsentModule } from '@localia/ngx-cookie-consent';
 // const cookieConfig = {};
 
 @NgModule({
-  imports: [
-    // using own configuration pass the config object  
-    NgxCookieConsentModule.forRoot(),
-  ],
+    imports: [
+        // using own configuration pass the config object  
+        NgxCookieConsentModule.forRoot(),
+    ],
 })
 ```
 
