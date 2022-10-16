@@ -1,6 +1,29 @@
 {
     "name": "ngx-cookie-consent",
-    "version": "0.0.2",
+    "version": "1.0.0",
+    "description": "Angular module to display a cookie consent banner without other dependencies.",
+    "author": "Giacomo Barbalinardo",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/giacomo/ngx-cookie-consent.git"
+    },
+    "bugs": {
+        "url": "https://github.com/giacomo/ngx-cookie-consent/issues"
+    },
+    "homepage": "https://github.com/giacomo/ngx-cookie-consent",
+    "keywords": [
+        "law",
+        "angular",
+        "cookie",
+        "consent",
+        "banner",
+        "ngx",
+        "ngx-cookie-consent",
+        "angular-cookie-consent",
+        "cookie-consent",
+        "cookie-consent-banner"
+    ],
     "peerDependencies": {
         "@angular/common": "^14.2.0",
         "@angular/core": "^14.2.0",

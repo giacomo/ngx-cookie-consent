@@ -1,24 +1,100 @@
-# NgxCookieConsent
+# ngx-cookie-consent
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.0.
+Angular module to display a cookie consent banner without other dependencies.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name --project ngx-cookie-consent` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-cookie-consent`.
-> Note: Don't forget to add `--project ngx-cookie-consent` or else it will be added to the default project in your `angular.json` file. 
+### Install the package via npm:
+```bash
+npm install ngx-cookie-consent --save
+```
 
-## Build
+### Install the package with yarn:
+```bash
+yarn add ngx-cookie-consent
+```
 
-Run `ng build ngx-cookie-consent` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Usage
 
-## Publishing
+### Import the module
 
-After building your library with `ng build ngx-cookie-consent`, go to the dist folder `cd dist/ngx-cookie-consent` and run `npm publish`.
+```typescript
+import { NgxCookieConsentModule } from 'ngx-cookie-consent';
 
-## Running unit tests
+// use your configuration or leave it empty
+// const cookieConfig = {};
 
-Run `ng test ngx-cookie-consent` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  imports: [
+    // using own configuration pass the config object  
+    NgxCookieConsentModule.forRoot(),
+  ],
+})
+```
 
-## Further help
+### Add the cookie consent component to your template at the top for all pages eg. app.component.html
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```html
+<ngx-cookie-consent></ngx-cookie-consent>
+<router-outlet></router-outlet>
+```
+
+### Usage in templates to check if the user has accepted the cookie consent
+
+```html
+<div *ngxIfConsent="'functional_google_maps'">
+    This content is only visible if functional_google_maps consent is given.
+    (In this example functional_google_maps is the name of the cookie configured in the config object)
+</div>
+```
+
+## Configuration
+
+| Name                  | Type     | Default          | Description                                                                        |
+|-----------------------|----------|------------------|------------------------------------------------------------------------------------|
+| privacyPolicyUrl      | string   | '#'              | URL to your privacy policy ⚠ required ⚠                                            |
+| imprintUrl            | string   | '#'              | URL to your imprint ⚠ required ⚠                                                   |
+| defaultLanguage       | string   | 'en'             | Default language for the cookie consent banner                                     |
+| availableLanguages    | string[] | ['en', 'de']     | Available languages for the cookie consent banner                                  |
+| showLanguageSwitcher  | boolean  | true             | Show language switcher                                                             |
+| showBadgeOpener       | boolean  | true             | Show badge opener                                                                  |
+| openerPosition        | enum     | 'left-bottom'    | Position of the badge eg. 'left-top', 'right-top' , 'left-bottom' , 'right-bottom' |
+| customClass           | string   | ''               | Custom class for the cookie consent banner                                         |
+| cookiePrefix          | string   | 'cookieconsent_' | Prefix for the cookie consent banner                                               |
+| cookieExpiryDays      | number   | 365              | Expiry days for the cookie consent banner                                          |
+| showCookieDetails     | boolean  | false            | Show cookie details                                                                |
+| showFunctionalCookies | boolean  | true             | Show functional cookies                                                            |
+| functionalCookies     | CookieItem[]    | []               | Functional cookies                                                                 |
+| showMarketingCookies  | boolean  | true             | Show marketing cookies                                                             |
+| marketingCookies      | CookieItem[]    | []               | Marketing cookies                                                                  |
+| showEssentialCookies  | boolean  | true             | Show essential cookies                                                             |
+| essentialCookies      | CookieItem[]    | []               | Essential cookies                                                                  |
+| showOtherTools        | boolean  | true             | Show other tools                                                                   |
+| otherTools            | CookieItem[]    | []               | Other tools                                                                        |
+| excludeRoutes         | string[] | []               | Exclude routes eg. ['/privacy-policy']                                             |
+
+### CookieItem interface
+
+| Name        | Type   | Description                                                                                                                         |
+|-------------|--------|-------------------------------------------------------------------------------------------------------------------------------------|
+|key           | string | Key for the cookie eg. 'functional_google_analytics'                                                                                |
+|name          | string | Name for the cookie eg. 'Google Analytics'                                                                                          |
+|description   | string | Description for the cookie eg. 'Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.' |
+|privacyPolicyUrl| string | URL to the privacy policy for the cookie eg. 'https://policies.google.com/privacy'                                                  |
+|cookies      | CookieDetail[] | Cookie details for the cookie                                 |
+
+### CookieDetail interface
+
+| Name        | Type   | Description                                                                 |
+|-------------|--------|-----------------------------------------------------------------------------|
+|name          | string | Name for the saved cookie eg. '_ga'                                         |
+|description   | string | Description for the saved cookie eg. 'This cookie is used to distinguish users.'                     |
+|duration      | string | Duration for the saved cookie eg. '2 years'                                 |
+
+## Contributing
+
+This project has a maintainer that actively monitors its issue queue and responds in a timely manner. This means that bug reports, tasks, feature requests and support request posted in the project's issue should receive timely attention from project's maintainers. Other community members are also welcome to resolve issues posted to the issue queue.
+
+## License
+
+ngx-cookie-consent is licensed under the [MIT license](http://opensource.org/licenses/MIT).
