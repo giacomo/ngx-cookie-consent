@@ -6,12 +6,12 @@ Angular module to display a cookie consent banner without other dependencies.
 
 ### Install the package via npm:
 ```bash
-npm install ngx-cookie-consent --save
+npm install @giacomo/ngx-cookie-consent --save
 ```
 
 ### Install the package with yarn:
 ```bash
-yarn add ngx-cookie-consent
+yarn add @giacomo/ngx-cookie-consent
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ yarn add ngx-cookie-consent
 ### Import the module
 
 ```typescript
-import { NgxCookieConsentModule } from 'ngx-cookie-consent';
+import { NgxCookieConsentModule } from '@giacomo/ngx-cookie-consent';
 
 // use your configuration or leave it empty
 // const cookieConfig = {};
