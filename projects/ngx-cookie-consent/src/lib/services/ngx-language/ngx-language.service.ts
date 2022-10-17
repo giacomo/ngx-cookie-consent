@@ -16,9 +16,12 @@ export class NgxLanguageService {
 
 
     getTranslation(key: string, translationLang?: string): string {
+        const sanitizedKey = key.replace('-', '_');
+
         if (translationLang) {
-            return this.translations[`lang_${translationLang}`][key] || '';
+            return this.translations[`lang_${translationLang}`][sanitizedKey] || '';
         }
-        return this.translations[this.translationKey][key] || '';
+
+        return this.translations[this.translationKey][sanitizedKey] || '';
     }
 }

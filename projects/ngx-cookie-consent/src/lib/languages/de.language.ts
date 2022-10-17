@@ -1,7 +1,11 @@
 export const lang_de: { [key: string]: string } = {
     language: 'Deutsch',
     title: 'Wir schätzen Ihre Privatsphäre',
-    text: 'Wir und unsere Partner verwenden Technologien wie Cookies oder Targeting und verarbeiten personenbezogene Daten wie IP-Adresse oder Browserinformationen, um die angezeigte Werbung zu personalisieren. Diese Technologien können auf Ihr Gerät zugreifen und helfen uns, Ihnen relevantere Anzeigen zu zeigen und Ihre Webseitenerfahrung zu verbessern. Wir nutzen diese Technologien zudem, um Ergebnisse zu messen oder unsere Website-Inhalte besser auszurichten. Da wir Ihre Privatsphäre schätzen, bitten wir Sie hiermit um Ihre Einwilligung, die folgenden Technologien zu verwenden. Sie können diese jederzeit später ändern/widerrufen, indem Sie auf die Schaltfläche Einstellungen in der rechten unteren Ecke der Seite klicken.',
+    text: 'Wir und unsere Partner verwenden Technologien wie Cookies oder Targeting und verarbeiten personenbezogene Daten wie IP-Adresse oder Browserinformationen, um die angezeigte Werbung zu personalisieren. Diese Technologien können auf Ihr Gerät zugreifen und helfen uns, Ihnen relevantere Anzeigen zu zeigen und Ihre Webseitenerfahrung zu verbessern. Wir nutzen diese Technologien zudem, um Ergebnisse zu messen oder unsere Website-Inhalte besser auszurichten. Da wir Ihre Privatsphäre schätzen, bitten wir Sie hiermit um Ihre Einwilligung, die folgenden Technologien zu verwenden.',
+    right_bottom: 'Sie können diese jederzeit später ändern/widerrufen, indem Sie auf die Schaltfläche Einstellungen in der rechten unteren Ecke der Seite klicken.',
+    left_bottom: 'Sie können diese jederzeit später ändern/widerrufen, indem Sie auf die Schaltfläche Einstellungen in der linken unteren Ecke der Seite klicken.',
+    right_top: 'Sie können diese jederzeit später ändern/widerrufen, indem Sie auf die Schaltfläche Einstellungen in der rechten oberen Ecke der Seite klicken.',
+    left_top: 'Sie können diese jederzeit später ändern/widerrufen, indem Sie auf die Schaltfläche Einstellungen in der linken oberen Ecke der Seite klicken.',
     privacy_text: 'Datenschutzbestimmungen',
     imprint_text: 'Impressum',
     privacy_settings_text: 'Datenschutzeinstellungen',
