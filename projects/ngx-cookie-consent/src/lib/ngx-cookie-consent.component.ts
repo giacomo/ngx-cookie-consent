@@ -170,4 +170,15 @@ export class NgxCookieConsentComponent implements OnInit {
             }
         );
     }
+
+    closeDropDown($event: Event) {
+        const eventTarget = $event.target as HTMLElement;
+        const parentTarget = eventTarget.parentElement as HTMLElement;
+
+        if (eventTarget.classList.contains('language-chooser') || parentTarget.classList.contains('language-chooser')) {
+            return;
+        }
+
+        this.dropDownOpen = false;
+    }
 }

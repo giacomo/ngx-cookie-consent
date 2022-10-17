@@ -310,4 +310,28 @@ describe('NgxCookieConsentComponent', () => {
         expect(component.cookieConsentVisible).toBeTrue();
     });
 
+    it('should not close dropdown on click inside', () => {
+        const event: Event = <Event><any>{ target: { classList: { contains: () => true } } };
+        component.dropDownOpen = true;
+        component.closeDropDown(event);
+
+        expect(component.dropDownOpen).toBeTrue();
+    });
+
+    it('should not close dropdown on click if parent contains class', () => {
+        const event: Event = <Event><any>{ target: { classList: { contains: () => false }, parentElement: { classList: { contains: () => true } } } };
+        component.dropDownOpen = true;
+        component.closeDropDown(event);
+
+        expect(component.dropDownOpen).toBeTrue();
+    });
+
+    it('should close dropdown on click outside', () => {
+        const event: Event = <Event><any>{ target: { classList: { contains: () => false }, parentElement: { classList: { contains: () => false } } } };
+        component.dropDownOpen = true;
+        component.closeDropDown(event);
+
+        expect(component.dropDownOpen).toBeFalse();
+    });
+
 });

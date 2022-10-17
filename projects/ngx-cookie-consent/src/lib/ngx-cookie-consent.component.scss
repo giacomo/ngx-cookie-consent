@@ -460,11 +460,6 @@
         height: 32px;
         cursor: pointer;
     }
-
-    svg {
-        width: 100%;
-        height: 100%;
-    }
 }
 
 .dropdown {
@@ -528,6 +523,11 @@
     &--arrow-up {
         background-image: url('../assets/down.svg');
         transform: rotate(180deg);
+    }
+
+    &--language {
+        display: inline-block;
+        background-image: url('../assets/language-icon.svg');
     }
 }
 
