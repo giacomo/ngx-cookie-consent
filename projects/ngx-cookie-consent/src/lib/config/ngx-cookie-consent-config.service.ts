@@ -8,7 +8,7 @@ export class NgxCookieConsentConfigService {
     privacyPolicyUrl?: string = '#';
     imprintUrl?: string = '#';
     defaultLanguage?: string = 'en';
-    availableLanguages?: string[] = ['en', 'de'];
+    availableLanguages?: string[] = ['en', 'de', 'it'];
     showLanguageSwitcher?: boolean = true;
     showBadgeOpener?: boolean = true;
     openerPosition?: 'left-top' | 'right-top' | 'left-bottom' | 'right-bottom' = 'left-bottom';
