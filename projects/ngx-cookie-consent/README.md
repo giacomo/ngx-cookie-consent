@@ -1,9 +1,11 @@
 # @localia/ngx-cookie-consent
 
-Angular module to display a cookie consent banner without other dependencies.
+Angular multi-language module to display a cookie consent banner without other dependencies.
 
 [![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https:///pr.new/github.com/giacomo/ngx-cookie-consent)
 
+###### Works with Angular v14+
+###### Available languages: English, German, Italian
 
 ## Installation
 
@@ -28,10 +30,10 @@ import { NgxCookieConsentModule } from '@localia/ngx-cookie-consent';
 // const cookieConfig = {};
 
 @NgModule({
-  imports: [
-    // using own configuration pass the config object  
-    NgxCookieConsentModule.forRoot(),
-  ],
+    imports: [
+        // using own configuration pass the config object  
+        NgxCookieConsentModule.forRoot(),
+    ],
 })
 ```
 
@@ -53,28 +55,28 @@ import { NgxCookieConsentModule } from '@localia/ngx-cookie-consent';
 
 ## Configuration
 
-| Name                  | Type     | Default          | Description                                                                        |
-|-----------------------|----------|------------------|------------------------------------------------------------------------------------|
-| privacyPolicyUrl      | string   | '#'              | URL to your privacy policy ⚠ required ⚠                                            |
-| imprintUrl            | string   | '#'              | URL to your imprint ⚠ required ⚠                                                   |
-| defaultLanguage       | string   | 'en'             | Default language for the cookie consent banner                                     |
-| availableLanguages    | string[] | ['en', 'de']     | Available languages for the cookie consent banner                                  |
-| showLanguageSwitcher  | boolean  | true             | Show language switcher                                                             |
-| showBadgeOpener       | boolean  | true             | Show badge opener                                                                  |
-| openerPosition        | enum     | 'left-bottom'    | Position of the badge eg. 'left-top', 'right-top' , 'left-bottom' , 'right-bottom' |
-| customClass           | string   | ''               | Custom class for the cookie consent banner                                         |
-| cookiePrefix          | string   | 'cookieconsent_' | Prefix for the cookie consent banner                                               |
-| cookieExpiryDays      | number   | 365              | Expiry days for the cookie consent banner                                          |
-| showCookieDetails     | boolean  | false            | Show cookie details                                                                |
-| showFunctionalCookies | boolean  | true             | Show functional cookies                                                            |
-| functionalCookies     | CookieItem[]    | []               | Functional cookies                                                                 |
-| showMarketingCookies  | boolean  | true             | Show marketing cookies                                                             |
-| marketingCookies      | CookieItem[]    | []               | Marketing cookies                                                                  |
-| showEssentialCookies  | boolean  | true             | Show essential cookies                                                             |
-| essentialCookies      | CookieItem[]    | []               | Essential cookies                                                                  |
-| showOtherTools        | boolean  | true             | Show other tools                                                                   |
-| otherTools            | CookieItem[]    | []               | Other tools                                                                        |
-| excludeRoutes         | string[] | []               | Exclude routes eg. ['/privacy-policy']                                             |
+| Name                  | Type     | Default           | Description                                                                        |
+|-----------------------|----------|-------------------|------------------------------------------------------------------------------------|
+| privacyPolicyUrl      | string   | '#'               | URL to your privacy policy ⚠ required ⚠                                            |
+| imprintUrl            | string   | '#'               | URL to your imprint ⚠ required ⚠                                                   |
+| defaultLanguage       | string   | 'en'              | Default language for the cookie consent banner                                     |
+| availableLanguages    | string[] | ['en', 'de', 'it'] | Available languages for the cookie consent banner                                  |
+| showLanguageSwitcher  | boolean  | true              | Show language switcher                                                             |
+| showBadgeOpener       | boolean  | true              | Show badge opener                                                                  |
+| openerPosition        | enum     | 'left-bottom'     | Position of the badge eg. 'left-top', 'right-top' , 'left-bottom' , 'right-bottom' |
+| customClass           | string   | ''                | Custom class for the cookie consent banner                                         |
+| cookiePrefix          | string   | 'cookieconsent_'  | Prefix for the cookie consent banner                                               |
+| cookieExpiryDays      | number   | 365               | Expiry days for the cookie consent banner                                          |
+| showCookieDetails     | boolean  | false             | Show cookie details                                                                |
+| showFunctionalCookies | boolean  | true              | Show functional cookies                                                            |
+| functionalCookies     | CookieItem[]    | []                | Functional cookies                                                                 |
+| showMarketingCookies  | boolean  | true              | Show marketing cookies                                                             |
+| marketingCookies      | CookieItem[]    | []                | Marketing cookies                                                                  |
+| showEssentialCookies  | boolean  | true              | Show essential cookies                                                             |
+| essentialCookies      | CookieItem[]    | []                | Essential cookies                                                                  |
+| showOtherTools        | boolean  | true              | Show other tools                                                                   |
+| otherTools            | CookieItem[]    | []                | Other tools                                                                        |
+| excludeRoutes         | string[] | []                | Exclude routes eg. ['/privacy-policy']                                             |
 
 ### CookieItem interface
 
