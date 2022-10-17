@@ -1,7 +1,11 @@
 export const lang_it: { [key: string]: string } = {
     language: 'Italiano',
     title: 'Teniamo alla vostra privacy',
-    text: 'Noi e i nostri partner utilizziamo tecnologie come i cookie o il targeting ed elaboriamo dati personali come l\'indirizzo IP o le informazioni sul browser per personalizzare gli annunci che visualizziamo. Queste tecnologie possono accedere al vostro dispositivo e aiutarci a mostrarvi annunci più pertinenti e a migliorare la vostra esperienza sul sito web. Utilizziamo queste tecnologie anche per misurare i risultati o per indirizzare meglio i contenuti del nostro sito web. Poiché teniamo alla vostra privacy, con la presente chiediamo il vostro consenso all\'utilizzo delle seguenti tecnologie. È possibile modificare/revocare tale consenso in qualsiasi momento facendo clic sul pulsante Impostazioni nell\'angolo in basso a destra della pagina.',
+    text: 'Noi e i nostri partner utilizziamo tecnologie come i cookie o il targeting ed elaboriamo dati personali come l\'indirizzo IP o le informazioni sul browser per personalizzare gli annunci che visualizziamo. Queste tecnologie possono accedere al vostro dispositivo e aiutarci a mostrarvi annunci più pertinenti e a migliorare la vostra esperienza sul sito web. Utilizziamo queste tecnologie anche per misurare i risultati o per indirizzare meglio i contenuti del nostro sito web. Poiché teniamo alla vostra privacy, con la presente chiediamo il vostro consenso all\'utilizzo delle seguenti tecnologie.',
+    right_bottom: 'È possibile modificare/revocare tale consenso in qualsiasi momento facendo clic sul pulsante Impostazioni nell\'angolo in basso a destra della pagina.',
+    left_bottom: 'È possibile modificare/revocare tale consenso in qualsiasi momento facendo clic sul pulsante Impostazioni nell\'angolo in basso a sinistra della pagina.',
+    right_top: 'È possibile modificare/revocare tale consenso in qualsiasi momento facendo clic sul pulsante Impostazioni nell\'angolo in alto a destra della pagina.',
+    left_top: 'È possibile modificare/revocare tale consenso in qualsiasi momento facendo clic sul pulsante Impostazioni nell\'angolo in alto a sinistra della pagina.',
     privacy_text: 'Politica sulla privacy',
     imprint_text: 'Imprint',
     privacy_settings_text: 'Impostazioni sulla privacy',

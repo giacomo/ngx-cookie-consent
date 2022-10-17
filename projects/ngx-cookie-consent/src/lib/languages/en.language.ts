@@ -1,7 +1,11 @@
 export const lang_en: { [key: string]: string } = {
     language: 'English',
     title: 'We value your privacy',
-    text: 'We and our partners use technologies such as cookies or targeting and process personal data such as IP address or browser information to personalise the ads we display. These technologies may access your device and help us show you more relevant ads and improve your website experience. We also use these technologies to measure results or better target our website content. Because we value your privacy, we hereby ask for your consent to use the following technologies. You can change/revoke this at any time later by clicking on the Settings button in the bottom right corner of the page.',
+    text: 'We and our partners use technologies such as cookies or targeting and process personal data such as IP address or browser information to personalise the ads we display. These technologies may access your device and help us show you more relevant ads and improve your website experience. We also use these technologies to measure results or better target our website content. Because we value your privacy, we hereby ask for your consent to use the following technologies.',
+    right_bottom: 'You can change/revoke this at any time later by clicking on the Settings button in the bottom right corner of the page.',
+    left_bottom: 'You can change/revoke this at any time later by clicking on the Settings button in the bottom left corner of the page.',
+    right_top: 'You can change/revoke this at any time later by clicking on the Settings button in the top right corner of the page.',
+    left_top: 'You can change/revoke this at any time later by clicking on the Settings button in the top left corner of the page.',
     privacy_text: 'Privacy Policy',
     imprint_text: 'Imprint',
     privacy_settings_text: 'Privacy Settings',

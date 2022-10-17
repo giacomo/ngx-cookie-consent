@@ -36,6 +36,11 @@ describe('NgxLanguageService', () => {
         expect(translation).toBe('Other');
     });
 
+    it('should sanitize a translation key', () => {
+        const translation = service.getTranslation('other-title');
+        expect(translation).toBe('Other');
+    });
+
     it('should return a translation for a specific language', () => {
         const translation = service.getTranslation('other_title', 'de');
         expect(translation).toBe('Andere');
