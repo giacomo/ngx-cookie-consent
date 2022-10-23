@@ -22,13 +22,14 @@
 
     &__opener {
         position: fixed;
-        width: 24px;
-        height: 24px;
+        width: 40px;
+        height: 50px;
         padding: 12px 6px;
         border: 1px solid lighten(#388edc, 10%);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         background-color: #388edc;
         cursor: pointer;
+        box-sizing: border-box;
 
         &:hover {
             background-color: darken(#388edc, 10%);
@@ -108,6 +109,7 @@
         box-shadow: 0 1px 3px rgba(33, 41, 52, .75);
         overflow-y: auto;
         position: relative;
+        box-sizing: content-box;
 
         @media (max-width: 768px) {
             padding: 4rem 2rem;
@@ -657,6 +659,7 @@
     width: 2rem;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
+    box-sizing: content-box;
 
     &.flag- {
         &ru {
