@@ -1,5 +1,7 @@
+import { TranslatedText } from './translated-text.type';
+
 export interface CookieDetail {
-    name: string;
-    description: string;
-    duration: string;
+    name: string | TranslatedText;
+    description: string | TranslatedText;
+    duration: string | TranslatedText;
 }
