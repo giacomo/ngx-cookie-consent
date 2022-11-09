@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { CookieItem } from './cookie-item.interface';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class NgxCookieConsentConfigService {
     privacyPolicyUrl?: string = '#';
     imprintUrl?: string = '#';
     defaultLanguage?: string = 'en';
-    availableLanguages?: string[] = ['en', 'de', 'it'];
+    availableLanguages?: string[] = ['en', 'de', 'it', 'ptbr'];
     showLanguageSwitcher?: boolean = true;
     showBadgeOpener?: boolean = true;
-    openerPosition?: 'left-top' | 'right-top' | 'left-bottom' | 'right-bottom' = 'left-bottom';
+    openerPosition?: 'left-top' | 'right-top' | 'left-bottom' | 'right-bottom' =
+        'left-bottom';
     customClass?: string = '';
     cookiePrefix?: string = 'cookieconsent_';
     cookieExpiryDays?: number = 365;
