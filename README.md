@@ -60,7 +60,7 @@ import { NgxCookieConsentModule } from '@localia/ngx-cookie-consent';
 | privacyPolicyUrl      | string   | '#'               | URL to your privacy policy ⚠ required ⚠                                            |
 | imprintUrl            | string   | '#'               | URL to your imprint ⚠ required ⚠                                                   |
 | defaultLanguage       | string   | 'en'              | Default language for the cookie consent banner                                     |
-| availableLanguages    | string[] | ['en', 'de', 'it'] | Available languages for the cookie consent banner                                  |
+| availableLanguages    | string[] | ['en', 'de', 'it', 'ptbr'] | Available languages for the cookie consent banner                                  |
 | showLanguageSwitcher  | boolean  | true              | Show language switcher                                                             |
 | showBadgeOpener       | boolean  | true              | Show badge opener                                                                  |
 | openerPosition        | enum     | 'left-bottom'     | Position of the badge eg. 'left-top', 'right-top' , 'left-bottom' , 'right-bottom' |
