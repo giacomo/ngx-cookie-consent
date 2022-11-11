@@ -5,16 +5,19 @@ Angular multi-language module to display a cookie consent banner without other d
 [![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https:///pr.new/github.com/giacomo/ngx-cookie-consent)
 
 ###### Works with Angular v14+
+
 ###### Available languages: English, German, Italian
 
 ## Installation
 
 ### Install the package via npm:
+
 ```bash
 npm install @localia/ngx-cookie-consent --save
 ```
 
 ### Install the package with yarn:
+
 ```bash
 yarn add @localia/ngx-cookie-consent
 ```
@@ -31,7 +34,7 @@ import { NgxCookieConsentModule } from '@localia/ngx-cookie-consent';
 
 @NgModule({
     imports: [
-        // using own configuration pass the config object  
+        // using own configuration pass the config object
         NgxCookieConsentModule.forRoot(),
     ],
 })
@@ -40,61 +43,78 @@ import { NgxCookieConsentModule } from '@localia/ngx-cookie-consent';
 ### Add the cookie consent component to your template at the top for all pages eg. app.component.html
 
 ```html
-<ngx-cookie-consent></ngx-cookie-consent>
-<router-outlet></router-outlet>
+<ngx-cookie-consent></ngx-cookie-consent> <router-outlet></router-outlet>
 ```
 
 ### Usage in templates to check if the user has accepted the cookie consent
 
 ```html
 <div *ngxIfConsent="'functional_google_maps'">
-    This content is only visible if functional_google_maps consent is given.
-    (In this example functional_google_maps is the name of the cookie configured in the config object)
+    This content is only visible if functional_google_maps consent is given. (In
+    this example functional_google_maps is the name of the cookie configured in
+    the config object)
 </div>
 ```
 
 ## Configuration
 
-| Name                  | Type     | Default           | Description                                                                        |
-|-----------------------|----------|-------------------|------------------------------------------------------------------------------------|
-| privacyPolicyUrl      | string   | '#'               | URL to your privacy policy ⚠ required ⚠                                            |
-| imprintUrl            | string   | '#'               | URL to your imprint ⚠ required ⚠                                                   |
-| defaultLanguage       | string   | 'en'              | Default language for the cookie consent banner                                     |
-| availableLanguages    | string[] | ['en', 'de', 'it'] | Available languages for the cookie consent banner                                  |
-| showLanguageSwitcher  | boolean  | true              | Show language switcher                                                             |
-| showBadgeOpener       | boolean  | true              | Show badge opener                                                                  |
-| openerPosition        | enum     | 'left-bottom'     | Position of the badge eg. 'left-top', 'right-top' , 'left-bottom' , 'right-bottom' |
-| customClass           | string   | ''                | Custom class for the cookie consent banner                                         |
-| cookiePrefix          | string   | 'cookieconsent_'  | Prefix for the cookie consent banner                                               |
-| cookieExpiryDays      | number   | 365               | Expiry days for the cookie consent banner                                          |
-| showCookieDetails     | boolean  | false             | Show cookie details                                                                |
-| showFunctionalCookies | boolean  | true              | Show functional cookies                                                            |
-| functionalCookies     | CookieItem[]    | []                | Functional cookies                                                                 |
-| showMarketingCookies  | boolean  | true              | Show marketing cookies                                                             |
-| marketingCookies      | CookieItem[]    | []                | Marketing cookies                                                                  |
-| showEssentialCookies  | boolean  | true              | Show essential cookies                                                             |
-| essentialCookies      | CookieItem[]    | []                | Essential cookies                                                                  |
-| showOtherTools        | boolean  | true              | Show other tools                                                                   |
-| otherTools            | CookieItem[]    | []                | Other tools                                                                        |
-| excludeRoutes         | string[] | []                | Exclude routes eg. ['/privacy-policy']                                             |
+| Name                  | Type                     | Default                    | Description                                                                        |
+| --------------------- | ------------------------ | -------------------------- | ---------------------------------------------------------------------------------- |
+| privacyPolicyUrl      | string \| TranslatedText | '#'                        | URL to your privacy policy ⚠ required ⚠                                            |
+| imprintUrl            | string \| TranslatedText | '#'                        | URL to your imprint ⚠ required ⚠                                                   |
+| defaultLanguage       | string                   | 'en'                       | Default language for the cookie consent banner                                     |
+| availableLanguages    | string[]                 | ['en', 'de', 'it', 'ptbr'] | Available languages for the cookie consent banner                                  |
+| showLanguageSwitcher  | boolean                  | true                       | Show language switcher                                                             |
+| showBadgeOpener       | boolean                  | true                       | Show badge opener                                                                  |
+| openerPosition        | enum                     | 'left-bottom'              | Position of the badge eg. 'left-top', 'right-top' , 'left-bottom' , 'right-bottom' |
+| customClass           | string                   | ''                         | Custom class for the cookie consent banner                                         |
+| cookiePrefix          | string                   | 'cookieconsent\_'          | Prefix for the cookie consent banner                                               |
+| cookieExpiryDays      | number                   | 365                        | Expiry days for the cookie consent banner                                          |
+| showCookieDetails     | boolean                  | false                      | Show cookie details                                                                |
+| showFunctionalCookies | boolean                  | true                       | Show functional cookies                                                            |
+| functionalCookies     | CookieItem[]             | []                         | Functional cookies                                                                 |
+| showMarketingCookies  | boolean                  | true                       | Show marketing cookies                                                             |
+| marketingCookies      | CookieItem[]             | []                         | Marketing cookies                                                                  |
+| showEssentialCookies  | boolean                  | true                       | Show essential cookies                                                             |
+| essentialCookies      | CookieItem[]             | []                         | Essential cookies                                                                  |
+| showOtherTools        | boolean                  | true                       | Show other tools                                                                   |
+| otherTools            | CookieItem[]             | []                         | Other tools                                                                        |
+| excludeRoutes         | string[]                 | []                         | Exclude routes eg. ['/privacy-policy']                                             |
 
 ### CookieItem interface
 
-| Name        | Type   | Description                                                                                                                         |
-|-------------|--------|-------------------------------------------------------------------------------------------------------------------------------------|
-|key           | string | Key for the cookie eg. 'functional_google_analytics'                                                                                |
-|name          | string | Name for the cookie eg. 'Google Analytics'                                                                                          |
-|description   | string | Description for the cookie eg. 'Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.' |
-|privacyPolicyUrl| string | URL to the privacy policy for the cookie eg. 'https://policies.google.com/privacy'                                                  |
-|cookies      | CookieDetail[] | Cookie details for the cookie                                 |
+| Name             | Type                     | Description                                                                                                                             |
+| ---------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| key              | string                   | Key for the cookie eg. 'functional_google_analytics'                                                                                    |
+| name             | string \| TranslatedText | Name for the cookie eg. 'Google Analytics'                                                                                              |
+| description      | string \| TranslatedText | Description for the cookie eg. 'Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.' |
+| privacyPolicyUrl | string \| TranslatedText | URL to the privacy policy for the cookie eg. 'https://policies.google.com/privacy'                                                      |
+| cookies          | CookieDetail[]           | Cookie details for the cookie                                                                                                           |
 
 ### CookieDetail interface
 
-| Name        | Type   | Description                                                                 |
-|-------------|--------|-----------------------------------------------------------------------------|
-|name          | string | Name for the saved cookie eg. '_ga'                                         |
-|description   | string | Description for the saved cookie eg. 'This cookie is used to distinguish users.'                     |
-|duration      | string | Duration for the saved cookie eg. '2 years'                                 |
+| Name        | Type                     | Description                                                                      |
+| ----------- | ------------------------ | -------------------------------------------------------------------------------- |
+| name        | string                   | Name for the saved cookie eg. '\_ga'                                             |
+| description | string \| TranslatedText | Description for the saved cookie eg. 'This cookie is used to distinguish users.' |
+| duration    | string \| TranslatedText | Duration for the saved cookie eg. '2 years'                                      |
+
+### TranslatedText type
+
+Object that is used to translate text using the available languages values.
+
+```JSON
+{
+    "en": "HI",
+    "ptbr": "OLÁ",
+    "default": "HI",
+}
+```
+
+| Name               | type   | Description                                                                                  |
+| ------------------ | ------ | -------------------------------------------------------------------------------------------- |
+| [language: string] | string | Value used indexed by the available languages values eg. 'OLÁ' for available language 'ptbr' |
+| default            | string | Default value used if language selected doesn't have a translation eg. 'HI'                  |
 
 ## Contributing
 
