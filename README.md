@@ -96,6 +96,19 @@ import { NgxCookieConsentModule } from '@localia/ngx-cookie-consent';
 | description | string &#124; TranslatableString | Description for the saved cookie eg. 'This cookie is used to distinguish users.' |
 | duration    | string &#124; TranslatableString | Duration for the saved cookie eg. '2 years'                                      |
 
+### TranslatableString interface
+
+The `TranslatableString` interface is used to define a string that can be translated into multiple languages. **It is optional to use this interface. If you don't use it, the string will be used as it is.**
+
+> ⚠ The `TranslatableString` interface if used, will automatically fall back to defaultLanguage used if no translation key defined for the desired language.
+
+| Name | Type   | Description                             |
+|------|--------|-----------------------------------------|
+| en   | string | English string for the specified key    |
+| de   | string | German string for the specified key     |
+| it   | string | Italian string for the specified key    |
+| pt   | string | Portuguese string for the specified key |
+
 ## Contributing
 
 This project has a maintainer that actively monitors its issue queue and responds in a timely manner. This means that bug reports, tasks, feature requests and support request posted in the project's issue should receive timely attention from project's maintainers. Other community members are also welcome to resolve issues posted to the issue queue.
