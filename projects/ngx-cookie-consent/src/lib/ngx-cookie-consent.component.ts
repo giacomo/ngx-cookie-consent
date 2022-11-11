@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgxCookieConsentService } from './services/ngx-cookie-consent/ngx-cookie-consent.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { TranslatedText } from './config/translated-text.type';
 
 @Component({
     selector: 'ngx-cookie-consent',
@@ -20,8 +19,8 @@ export class NgxCookieConsentComponent implements OnInit {
     otherToolsClosed = true;
     cookieForm: FormGroup;
     private cookieFields: {
-        functional: { key: string; selected: boolean }[];
-        marketing: { key: string; selected: boolean }[];
+        functional: { key: string; selected: boolean }[],
+        marketing: { key: string; selected: boolean }[],
     };
 
     constructor(
@@ -37,12 +36,14 @@ export class NgxCookieConsentComponent implements OnInit {
         return this.consentService.getConfig('defaultLanguage');
     }
 
-    get privacyPolicyUrl(): string | TranslatedText {
-        return this.consentService.getConfig('privacyPolicyUrl');
+    get privacyPolicyUrl(): string {
+        const config = this.consentService.getConfig('privacyPolicyUrl');
+        return this.consentService.getTranslationFromObject(config);
     }
 
-    get imprintUrl(): string | TranslatedText {
-        return this.consentService.getConfig('imprintUrl');
+    get imprintUrl(): string {
+        const config = this.consentService.getConfig('imprintUrl');
+        return this.consentService.getTranslationFromObject(config);
     }
 
     get availableLanguages(): string[] {
@@ -69,16 +70,12 @@ export class NgxCookieConsentComponent implements OnInit {
         return arr.every((value) => value === true);
     }
 
-    getTranslatedValue(obj: string | TranslatedText): string {
-        return (
-            (obj as TranslatedText)[this.activeLang] ||
-            (obj as TranslatedText)['default'] ||
-            (obj as string)
-        );
-    }
-
     translate(key: string, translationLang?: string): string {
         return this.consentService.getTranslation(key, translationLang);
+    }
+
+    translate_o(key: string | object, translationLang?: string): string {
+        return this.consentService.getTranslationFromObject(key, translationLang);
     }
 
     config(key: string) {

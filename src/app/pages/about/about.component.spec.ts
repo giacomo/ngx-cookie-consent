@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AboutComponent } from './about.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgxCookieConsentModule } from '../../../../projects/ngx-cookie-consent/src/lib/ngx-cookie-consent.module';
 
 describe('AboutComponent', () => {
     let component: AboutComponent;
@@ -10,7 +11,10 @@ describe('AboutComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [AboutComponent],
-            imports: [RouterTestingModule],
+            imports: [
+                RouterTestingModule,
+                NgxCookieConsentModule.forRoot({}),
+            ],
         })
             .compileComponents();
 

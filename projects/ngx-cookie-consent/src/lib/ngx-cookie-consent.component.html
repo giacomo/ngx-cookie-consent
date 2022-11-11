@@ -1,674 +1,251 @@
-<div
-    class="ngx-cc"
-    *ngIf="cookieConsentVisible"
-    (click)="closeDropDown($event)"
->
+<div class="ngx-cc" *ngIf="cookieConsentVisible" (click)="closeDropDown($event)">
     <div class="ngx-cc__wrapper">
         <div class="ngx-cc__modal" *ngIf="!showSettingsDialog">
-            <div
-                class="ngx-cc__modal_language-switcher"
-                *ngIf="config('showLanguageSwitcher')"
-            >
+            <div class="ngx-cc__modal_language-switcher" *ngIf="config('showLanguageSwitcher')">
                 <div class="language-switcher">
                     <div class="flex flex-end">
-                        <div
-                            class="language-chooser"
-                            title="{{ translate('choose_language_text') }}"
-                            (click)="dropDownOpen = !dropDownOpen"
-                        >
+                        <div class="language-chooser" title="{{ translate('choose_language_text') }}"
+                             (click)="dropDownOpen = !dropDownOpen">
                             <i class="icon icon--language"></i>
                         </div>
                     </div>
-                    <div
-                        class="dropdown"
-                        [ngClass]="{ 'dropdown--active': dropDownOpen }"
-                    >
-                        <div
-                            class="dropdown__item"
-                            *ngFor="let lang of availableLanguages"
-                            [ngClass]="{
-                                'dropdown__item--active': activeLang === lang
-                            }"
-                        >
-                            <div
-                                class="dropdown__item_text"
-                                (click)="switchLanguage(lang)"
-                            >
-                                <i class="flag-icon flag-{{ lang }}"></i>
-                                {{ translate("language", lang) }}
+                    <div class="dropdown" [ngClass]="{'dropdown--active': dropDownOpen}">
+                        <div class="dropdown__item" *ngFor="let lang of availableLanguages"
+                             [ngClass]="{'dropdown__item--active': activeLang === lang}">
+                            <div class="dropdown__item_text" (click)="switchLanguage(lang)">
+                                <i class="flag-icon flag-{{ lang }}"></i> {{ translate('language', lang) }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="ngx-cc__modal__header">
-                <h1 class="text--center">{{ translate("title") }}</h1>
+                <h1 class="text--center">{{ translate('title') }}</h1>
             </div>
             <div class="ngx-cc__modal__body">
-                <p>
-                    {{ translate("text") }}
-                    {{ translate(config("openerPosition")) }}
-                </p>
+                <p>{{ translate('text') }} {{ translate(config('openerPosition')) }}</p>
                 <div>
                     <ul class="ngx-cc__cookie-controls">
-                        <li>
-                            <a
-                                [href]="getTranslatedValue(privacyPolicyUrl)"
-                                target="_blank"
-                                >{{ translate("privacy_text") }}</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                [href]="getTranslatedValue(imprintUrl)"
-                                target="_blank"
-                                >{{ translate("imprint_text") }}</a
-                            >
-                        </li>
-                        <li>
-                            <span
-                                class="text--link"
-                                (click)="showSettingsDialog = true"
-                                >{{ translate("privacy_settings_text") }}</span
-                            >
+                        <li><a [href]="privacyPolicyUrl" target="_blank">{{ translate('privacy_text') }}</a></li>
+                        <li><a [href]="imprintUrl" target="_blank">{{ translate('imprint_text') }}</a></li>
+                        <li><span class="text--link"
+                                  (click)="showSettingsDialog = true">{{ translate('privacy_settings_text') }}</span>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="ngx-cc__modal__footer text--center">
                 <div class="ngx-cc__modal__controls">
-                    <button
-                        class="secondary text--uppercase cc-deny"
-                        (click)="denyAllCookies()"
-                    >
-                        {{ translate("decline_text") }}
-                    </button>
-                    <button
-                        class="text--uppercase cc-accept-all"
-                        (click)="acceptAllCookies()"
-                    >
-                        {{ translate("accept_text") }}
-                    </button>
+                    <button class="secondary text--uppercase cc-deny" (click)="denyAllCookies()">{{ translate('decline_text') }}</button>
+                    <button class="text--uppercase cc-accept-all" (click)="acceptAllCookies()">{{ translate('accept_text') }}</button>
                 </div>
             </div>
         </div>
         <div class="ngx-cc__modal" *ngIf="showSettingsDialog">
             <div class="ngx-cc__modal_back">
                 <div class="flex flex-start">
-                    <div
-                        class="back-button"
-                        title="{{ translate('back_text') }}"
-                        (click)="back()"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            shape-rendering="geometricPrecision"
-                            text-rendering="geometricPrecision"
-                            image-rendering="optimizeQuality"
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            viewBox="0 0 512 512"
-                        >
-                            <path
-                                fill-rule="nonzero"
-                                d="M512 256c0 70.68-28.66 134.7-74.98 181.02C390.7 483.34 326.68 512 256 512c-70.69 0-134.7-28.66-181.02-74.98C28.66 390.7 0 326.69 0 256c0-70.69 28.66-134.7 74.98-181.02C121.3 28.66 185.31 0 256 0c70.68 0 134.7 28.66 181.02 74.98C483.34 121.3 512 185.31 512 256zM280.33 146.96 171.3 256l109.03 109.04 40.52-40.51-68.51-68.52 68.52-68.52-40.53-40.53zm130.66 264.03c39.66-39.66 64.2-94.47 64.2-154.99 0-60.53-24.54-115.33-64.2-154.99-39.66-39.66-94.47-64.2-154.99-64.2-60.53 0-115.33 24.54-154.99 64.2-39.66 39.66-64.2 94.46-64.2 154.99 0 60.53 24.54 115.33 64.2 154.99 39.66 39.66 94.46 64.2 154.99 64.2 60.52 0 115.33-24.54 154.99-64.2z"
-                            />
+                    <div class="back-button" title="{{ translate('back_text') }}" (click)="back()">
+                        <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
+                             text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
+                             clip-rule="evenodd" viewBox="0 0 512 512">
+                            <path fill-rule="nonzero"
+                                  d="M512 256c0 70.68-28.66 134.7-74.98 181.02C390.7 483.34 326.68 512 256 512c-70.69 0-134.7-28.66-181.02-74.98C28.66 390.7 0 326.69 0 256c0-70.69 28.66-134.7 74.98-181.02C121.3 28.66 185.31 0 256 0c70.68 0 134.7 28.66 181.02 74.98C483.34 121.3 512 185.31 512 256zM280.33 146.96 171.3 256l109.03 109.04 40.52-40.51-68.51-68.52 68.52-68.52-40.53-40.53zm130.66 264.03c39.66-39.66 64.2-94.47 64.2-154.99 0-60.53-24.54-115.33-64.2-154.99-39.66-39.66-94.47-64.2-154.99-64.2-60.53 0-115.33 24.54-154.99 64.2-39.66 39.66-64.2 94.46-64.2 154.99 0 60.53 24.54 115.33 64.2 154.99 39.66 39.66 94.46 64.2 154.99 64.2 60.52 0 115.33-24.54 154.99-64.2z"/>
                         </svg>
                     </div>
                 </div>
             </div>
             <div class="ngx-cc__modal__header">
-                <h1 class="text--center">
-                    {{ translate("privacy_settings_title") }}
-                </h1>
+                <h1 class="text--center">{{ translate('privacy_settings_title') }}</h1>
             </div>
             <div class="ngx-cc__modal__body">
-                <p>{{ translate("privacy_settings_title_text") }}</p>
+                <p>{{ translate('privacy_settings_title_text') }}</p>
                 <div>
                     <ul class="ngx-cc__cookie-controls">
-                        <li>
-                            <a
-                                [href]="getTranslatedValue(privacyPolicyUrl)"
-                                target="_blank"
-                                >{{ translate("privacy_text") }}</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                [href]="getTranslatedValue(imprintUrl)"
-                                target="_blank"
-                                >{{ translate("imprint_text") }}</a
-                            >
-                        </li>
+                        <li><a [href]="privacyPolicyUrl" target="_blank">{{ translate('privacy_text') }}</a></li>
+                        <li><a [href]="imprintUrl" target="_blank">{{ translate('imprint_text') }}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="ngx-cc__consent_purposes">
-                <div
-                    class="block"
-                    [ngClass]="{ 'block--closed': functionalCookiesClosed }"
-                    *ngIf="config('showFunctionalCookies')"
-                >
+                <div class="block" [ngClass]="{'block--closed': functionalCookiesClosed}" *ngIf="config('showFunctionalCookies')">
                     <div class="block__header">
                         <div class="block__title">
-                            <h4>{{ translate("functional_title") }}</h4>
-                            <span>{{
-                                translate("functional_description")
-                            }}</span>
+                            <h4>{{ translate('functional_title') }}</h4>
+                            <span>{{ translate('functional_description') }}</span>
                         </div>
                         <div class="block__item__controls">
                             <div class="checkbox checkbox--apple">
-                                <input
-                                    type="checkbox"
-                                    id="functional_cookies"
-                                    name="functional_cookies"
-                                    value="1"
-                                    [checked]="functionalCookiesAllSelected"
-                                    (change)="toggle($event, 'functional')"
-                                />
+                                <input type="checkbox" id="functional_cookies" name="functional_cookies" value="1" [checked]="functionalCookiesAllSelected" (change)="toggle($event, 'functional')">
                                 <label for="functional_cookies"></label>
                             </div>
                         </div>
                         <div class="block__opener">
-                            <i
-                                class="icon icon--small icon--arrow-down"
-                                [ngClass]="{
-                                    'icon--arrow-down': functionalCookiesClosed,
-                                    'icon--arrow-up': !functionalCookiesClosed
-                                }"
-                                (click)="
-                                    functionalCookiesClosed =
-                                        !functionalCookiesClosed
-                                "
-                                *ngIf="config('functionalCookies').length > 0"
-                            ></i>
+                            <i class="icon icon--small icon--arrow-down" [ngClass]="{
+                                'icon--arrow-down': functionalCookiesClosed,
+                                'icon--arrow-up': !functionalCookiesClosed
+                            }" (click)="functionalCookiesClosed = !functionalCookiesClosed"
+                               *ngIf="config('functionalCookies').length > 0"></i>
                         </div>
                     </div>
                     <div class="block__items" [formGroup]="cookieForm">
-                        <div
-                            class="block__item"
-                            *ngFor="
-                                let functional of config('functionalCookies')
-                            "
-                        >
+                        <div class="block__item" *ngFor="let functional of config('functionalCookies')">
                             <div class="block__item__body">
                                 <div class="block__item__title">
-                                    <h5>
-                                        {{
-                                            getTranslatedValue(functional.name)
-                                        }}
-                                    </h5>
-                                    <div class="text--tiny">
-                                        {{
-                                            getTranslatedValue(
-                                                functional.description
-                                            )
-                                        }}
-                                    </div>
-                                    <a
-                                        class="text--link text--link--tiny"
-                                        href="{{
-                                            getTranslatedValue(
-                                                functional.privacyPolicyUrl
-                                            )
-                                        }}"
-                                        target="_blank"
-                                        >{{
-                                            getTranslatedValue(
-                                                functional.privacyPolicyUrl
-                                            )
-                                        }}</a
-                                    >
+                                    <h5>{{ translate_o(functional.name) }}</h5>
+                                    <div class="text--tiny">{{ translate_o(functional.description) }}</div>
+                                    <a class="text--link text--link--tiny" href="{{ translate_o(functional.privacyPolicyUrl) }}" target="_blank">{{ translate_o(functional.privacyPolicyUrl) }}</a>
                                 </div>
-                                <div
-                                    class="block__item__controls"
-                                    formGroupName="functional"
-                                >
-                                    <div
-                                        class="checkbox checkbox--apple checkbox--tiny"
-                                    >
-                                        <input
-                                            type="checkbox"
-                                            id="{{ functional.key }}"
-                                            formControlName="{{
-                                                functional.key
-                                            }}"
-                                            value="1"
-                                        />
-                                        <label
-                                            for="{{ functional.key }}"
-                                        ></label>
+                                <div class="block__item__controls" formGroupName="functional">
+                                    <div class="checkbox checkbox--apple checkbox--tiny">
+                                        <input type="checkbox" id="{{ functional.key }}" formControlName="{{ functional.key }}" value="1">
+                                        <label for="{{ functional.key }}"></label>
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                class="block__item__details"
-                                *ngIf="
-                                    config('showCookieDetails') &&
-                                    functional?.cookies.length > 0
-                                "
-                            >
-                                <div
-                                    class="detail__item"
-                                    *ngFor="
-                                        let functionalCookie of functional.cookies
-                                    "
-                                >
-                                    <div>
-                                        {{ translate("cookie_name") }}:
-                                        {{
-                                            getTranslatedValue(
-                                                functionalCookie.name
-                                            )
-                                        }}
-                                    </div>
-                                    <div>
-                                        {{ translate("cookie_description") }}:
-                                        {{
-                                            getTranslatedValue(
-                                                functionalCookie.description
-                                            )
-                                        }}
-                                    </div>
-                                    <div>
-                                        {{ translate("cookie_duration") }}:
-                                        {{
-                                            getTranslatedValue(
-                                                functionalCookie.duration
-                                            )
-                                        }}
-                                    </div>
+                            <div class="block__item__details" *ngIf="config('showCookieDetails') && functional?.cookies.length > 0">
+                                <div class="detail__item" *ngFor="let functionalCookie of functional.cookies">
+                                    <div>{{ translate('cookie_name') }}: {{ functionalCookie.name }}</div>
+                                    <div>{{ translate('cookie_description') }}: {{ translate_o(functionalCookie.description) }}</div>
+                                    <div>{{ translate('cookie_duration') }}: {{ translate_o(functionalCookie.duration) }}</div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
-                <div
-                    class="block"
-                    [ngClass]="{ 'block--closed': marketingCookiesClosed }"
-                    *ngIf="config('showMarketingCookies')"
-                >
+                <div class="block" [ngClass]="{'block--closed': marketingCookiesClosed}" *ngIf="config('showMarketingCookies')">
                     <div class="block__header">
                         <div class="block__title">
-                            <h4>{{ translate("marketing_title") }}</h4>
-                            <span>{{
-                                translate("marketing_description")
-                            }}</span>
+                            <h4>{{ translate('marketing_title') }}</h4>
+                            <span>{{ translate('marketing_description') }}</span>
                         </div>
                         <div class="block__item__controls">
                             <div class="checkbox checkbox--apple">
-                                <input
-                                    type="checkbox"
-                                    id="marketing_cookies"
-                                    name="marketing_cookies"
-                                    value="1"
-                                    [checked]="marketingCookiesAllSelected"
-                                    (change)="toggle($event, 'marketing')"
-                                />
+                                <input type="checkbox" id="marketing_cookies" name="marketing_cookies" value="1" [checked]="marketingCookiesAllSelected" (change)="toggle($event, 'marketing')">
                                 <label for="marketing_cookies"></label>
                             </div>
                         </div>
                         <div class="block__opener">
-                            <i
-                                class="icon icon--small icon--arrow-down"
-                                [ngClass]="{
-                                    'icon--arrow-down': marketingCookiesClosed,
-                                    'icon--arrow-up': !marketingCookiesClosed
-                                }"
-                                (click)="
-                                    marketingCookiesClosed =
-                                        !marketingCookiesClosed
-                                "
-                                *ngIf="config('marketingCookies').length > 0"
-                            ></i>
+                            <i class="icon icon--small icon--arrow-down" [ngClass]="{
+                                'icon--arrow-down': marketingCookiesClosed,
+                                'icon--arrow-up': !marketingCookiesClosed
+                            }" (click)="marketingCookiesClosed = !marketingCookiesClosed"
+                               *ngIf="config('marketingCookies').length > 0"></i>
                         </div>
                     </div>
                     <div class="block__items" [formGroup]="cookieForm">
-                        <div
-                            class="block__item"
-                            *ngFor="let marketing of config('marketingCookies')"
-                        >
+                        <div class="block__item" *ngFor="let marketing of config('marketingCookies')">
                             <div class="block__item__body">
                                 <div class="block__item__title">
-                                    <h5>
-                                        {{ getTranslatedValue(marketing.name) }}
-                                    </h5>
-                                    <div class="text--tiny">
-                                        {{
-                                            getTranslatedValue(
-                                                marketing.description
-                                            )
-                                        }}
-                                    </div>
-                                    <a
-                                        class="text--link text--link--tiny"
-                                        href="{{
-                                            getTranslatedValue(
-                                                marketing.privacyPolicyUrl
-                                            )
-                                        }}"
-                                        target="_blank"
-                                        >{{
-                                            getTranslatedValue(
-                                                marketing.privacyPolicyUrl
-                                            )
-                                        }}</a
-                                    >
+                                    <h5>{{ translate_o(marketing.name) }}</h5>
+                                    <div class="text--tiny">{{ translate_o(marketing.description) }}</div>
+                                    <a class="text--link text--link--tiny" href="{{ translate_o(marketing.privacyPolicyUrl) }}" target="_blank">{{ translate_o(marketing.privacyPolicyUrl) }}</a>
                                 </div>
-                                <div
-                                    class="block__item__controls"
-                                    formGroupName="marketing"
-                                >
-                                    <div
-                                        class="checkbox checkbox--apple checkbox--tiny"
-                                    >
-                                        <input
-                                            type="checkbox"
-                                            id="{{ marketing.key }}"
-                                            formControlName="{{
-                                                marketing.key
-                                            }}"
-                                            value="1"
-                                        />
-                                        <label
-                                            for="{{ marketing.key }}"
-                                        ></label>
+                                <div class="block__item__controls" formGroupName="marketing">
+                                    <div class="checkbox checkbox--apple checkbox--tiny">
+                                        <input type="checkbox" id="{{ marketing.key }}" formControlName="{{ marketing.key }}" value="1">
+                                        <label for="{{ marketing.key }}"></label>
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                class="block__item__details"
-                                *ngIf="
-                                    config('showCookieDetails') &&
-                                    marketing?.cookies.length > 0
-                                "
-                            >
-                                <div
-                                    class="detail__item"
-                                    *ngFor="
-                                        let marketingCookie of marketing.cookies
-                                    "
-                                >
-                                    <div>
-                                        {{ translate("cookie_name") }}:
-                                        {{
-                                            getTranslatedValue(
-                                                marketingCookie.name
-                                            )
-                                        }}
-                                    </div>
-                                    <div>
-                                        {{ translate("cookie_description") }}:
-                                        {{
-                                            getTranslatedValue(
-                                                marketingCookie.description
-                                            )
-                                        }}
-                                    </div>
-                                    <div>
-                                        {{ translate("cookie_duration") }}:
-                                        {{
-                                            getTranslatedValue(
-                                                marketingCookie.duration
-                                            )
-                                        }}
-                                    </div>
+                            <div class="block__item__details" *ngIf="config('showCookieDetails') && marketing?.cookies.length > 0">
+                                <div class="detail__item" *ngFor="let marketingCookie of marketing.cookies">
+                                    <div>{{ translate('cookie_name') }}: {{ marketingCookie.name }}</div>
+                                    <div>{{ translate('cookie_description') }}: {{ translate_o(marketingCookie.description) }}</div>
+                                    <div>{{ translate('cookie_duration') }}: {{ translate_o(marketingCookie.duration) }}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div
-                    class="block"
-                    [ngClass]="{ 'block--closed': essentialCookiesClosed }"
-                    *ngIf="config('showEssentialCookies')"
-                >
+                <div class="block" [ngClass]="{'block--closed': essentialCookiesClosed}" *ngIf="config('showEssentialCookies')">
                     <div class="block__header">
                         <div class="block__title">
-                            <h4>{{ translate("essential_title") }}</h4>
-                            <span>{{
-                                translate("essential_description")
-                            }}</span>
+                            <h4>{{ translate('essential_title') }}</h4>
+                            <span>{{ translate('essential_description') }}</span>
                         </div>
                         <div class="block__item__controls">
                             <div class="checkbox checkbox--apple">
-                                <input
-                                    type="checkbox"
-                                    id="essential_cookies"
-                                    name="essential_cookies"
-                                    value="1"
-                                    checked
-                                    disabled
-                                />
+                                <input type="checkbox" id="essential_cookies" name="essential_cookies" value="1" checked disabled>
                                 <label for="essential_cookies"></label>
                             </div>
                         </div>
                         <div class="block__opener">
-                            <i
-                                class="icon icon--small icon--arrow-down"
-                                [ngClass]="{
-                                    'icon--arrow-down': essentialCookiesClosed,
-                                    'icon--arrow-up': !essentialCookiesClosed
-                                }"
-                                (click)="
-                                    essentialCookiesClosed =
-                                        !essentialCookiesClosed
-                                "
-                                *ngIf="config('essentialCookies').length > 0"
-                            ></i>
+                            <i class="icon icon--small icon--arrow-down" [ngClass]="{
+                                'icon--arrow-down': essentialCookiesClosed,
+                                'icon--arrow-up': !essentialCookiesClosed
+                            }" (click)="essentialCookiesClosed = !essentialCookiesClosed"
+                               *ngIf="config('essentialCookies').length > 0"></i>
                         </div>
                     </div>
                     <div class="block__items">
-                        <div
-                            class="block__item"
-                            *ngFor="let essential of config('essentialCookies')"
-                        >
+                        <div class="block__item" *ngFor="let essential of config('essentialCookies')">
                             <div class="block__item__body">
                                 <div class="block__item__title">
-                                    <h5>
-                                        {{ getTranslatedValue(essential.name) }}
-                                    </h5>
-                                    <div class="text--tiny">
-                                        {{
-                                            getTranslatedValue(
-                                                essential.description
-                                            )
-                                        }}
-                                    </div>
-                                    <a
-                                        class="text--link text--link--tiny"
-                                        href="{{
-                                            getTranslatedValue(
-                                                essential.privacyPolicyUrl
-                                            )
-                                        }}"
-                                        target="_blank"
-                                        >{{
-                                            getTranslatedValue(
-                                                essential.privacyPolicyUrl
-                                            )
-                                        }}</a
-                                    >
+                                    <h5>{{ translate_o(essential.name) }}</h5>
+                                    <div class="text--tiny">{{ translate_o(essential.description) }}</div>
+                                    <a class="text--link text--link--tiny" href="{{ translate_o(essential.privacyPolicyUrl) }}" target="_blank">{{ translate_o(essential.privacyPolicyUrl) }}</a>
                                 </div>
                                 <div class="block__item__controls">
-                                    <div
-                                        class="checkbox checkbox--apple checkbox--tiny"
-                                    >
-                                        <input
-                                            type="checkbox"
-                                            id="{{ essential.key }}"
-                                            name="{{ essential.key }}"
-                                            value="1"
-                                            checked
-                                            disabled
-                                        />
-                                        <label
-                                            for="{{ essential.key }}"
-                                        ></label>
+                                    <div class="checkbox checkbox--apple checkbox--tiny">
+                                        <input type="checkbox" id="{{ essential.key }}" name="{{ essential.key }}" value="1" checked disabled>
+                                        <label for="{{ essential.key }}"></label>
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                class="block__item__details"
-                                *ngIf="
-                                    config('showCookieDetails') &&
-                                    essential?.cookies.length > 0
-                                "
-                            >
-                                <div
-                                    class="detail__item"
-                                    *ngFor="
-                                        let essentialCookie of essential.cookies
-                                    "
-                                >
-                                    <div>
-                                        {{ translate("cookie_name") }}:
-                                        {{
-                                            getTranslatedValue(
-                                                essentialCookie.name
-                                            )
-                                        }}
-                                    </div>
-                                    <div>
-                                        {{ translate("cookie_description") }}:
-                                        {{
-                                            getTranslatedValue(
-                                                essentialCookie.description
-                                            )
-                                        }}
-                                    </div>
-                                    <div>
-                                        {{ translate("cookie_duration") }}:
-                                        {{
-                                            getTranslatedValue(
-                                                essentialCookie.duration
-                                            )
-                                        }}
-                                    </div>
+                            <div class="block__item__details" *ngIf="config('showCookieDetails') && essential?.cookies.length > 0">
+                                <div class="detail__item" *ngFor="let essentialCookie of essential.cookies">
+                                    <div>{{ translate('cookie_name') }}: {{ essentialCookie.name }}</div>
+                                    <div>{{ translate('cookie_description') }}: {{ translate_o(essentialCookie.description) }}</div>
+                                    <div>{{ translate('cookie_duration') }}: {{ translate_o(essentialCookie.duration) }}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div
-                    class="block"
-                    [ngClass]="{ 'block--closed': otherToolsClosed }"
-                    *ngIf="config('showOtherTools')"
-                >
+                <div class="block" [ngClass]="{'block--closed': otherToolsClosed}" *ngIf="config('showOtherTools')">
                     <div class="block__header">
                         <div class="block__title">
-                            <h4>{{ translate("other_title") }}</h4>
-                            <span>{{ translate("other_description") }}</span>
+                            <h4>{{ translate('other_title') }}</h4>
+                            <span>{{ translate('other_description') }}</span>
                         </div>
                         <div class="block__item__controls">
                             <div class="checkbox checkbox--apple">
-                                <input
-                                    type="checkbox"
-                                    id="other_cookies"
-                                    name="other_cookies"
-                                    value="1"
-                                    checked
-                                    disabled
-                                />
+                                <input type="checkbox" id="other_cookies" name="other_cookies" value="1" checked disabled>
                                 <label for="other_cookies"></label>
                             </div>
                         </div>
                         <div class="block__opener">
-                            <i
-                                class="icon icon--small icon--arrow-down"
-                                [ngClass]="{
-                                    'icon--arrow-down': otherToolsClosed,
-                                    'icon--arrow-up': !otherToolsClosed
-                                }"
-                                (click)="otherToolsClosed = !otherToolsClosed"
-                                *ngIf="config('otherTools').length > 0"
-                            ></i>
+                            <i class="icon icon--small icon--arrow-down" [ngClass]="{
+                                'icon--arrow-down': otherToolsClosed,
+                                'icon--arrow-up': !otherToolsClosed
+                            }" (click)="otherToolsClosed = !otherToolsClosed"
+                               *ngIf="config('otherTools').length > 0"></i>
                         </div>
                     </div>
                     <div class="block__items">
-                        <div
-                            class="block__item"
-                            *ngFor="let other of config('otherTools')"
-                        >
+                        <div class="block__item" *ngFor="let other of config('otherTools')">
                             <div class="block__item__body">
                                 <div class="block__item__title">
-                                    <h5>
-                                        {{ getTranslatedValue(other.name) }}
-                                    </h5>
-                                    <div class="text--tiny">
-                                        {{
-                                            getTranslatedValue(
-                                                other.description
-                                            )
-                                        }}
-                                    </div>
-                                    <a
-                                        class="text--link text--link--tiny"
-                                        href="{{
-                                            getTranslatedValue(
-                                                other.privacyPolicyUrl
-                                            )
-                                        }}"
-                                        target="_blank"
-                                        >{{
-                                            getTranslatedValue(
-                                                other.privacyPolicyUrl
-                                            )
-                                        }}</a
-                                    >
+                                    <h5>{{ translate_o(other.name) }}</h5>
+                                    <div class="text--tiny">{{ translate_o(other.description) }}</div>
+                                    <a class="text--link text--link--tiny" href="{{ translate_o(other.privacyPolicyUrl) }}" target="_blank">{{ translate_o(other.privacyPolicyUrl) }}</a>
                                 </div>
                                 <div class="block__item__controls">
-                                    <div
-                                        class="checkbox checkbox--apple checkbox--tiny"
-                                    >
-                                        <input
-                                            type="checkbox"
-                                            id="{{ other.key }}"
-                                            name="{{ other.key }}"
-                                            value="1"
-                                            checked
-                                            disabled
-                                        />
+                                    <div class="checkbox checkbox--apple checkbox--tiny">
+                                        <input type="checkbox" id="{{ other.key }}" name="{{ other.key }}" value="1" checked disabled>
                                         <label for="{{ other.key }}"></label>
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                class="block__item__details"
-                                *ngIf="
-                                    config('showCookieDetails') &&
-                                    other?.cookies.length > 0
-                                "
-                            >
-                                <div
-                                    class="detail__item"
-                                    *ngFor="let otherCookie of other.cookies"
-                                >
-                                    <div>
-                                        {{ translate("cookie_name") }}:
-                                        {{
-                                            getTranslatedValue(otherCookie.name)
-                                        }}
-                                    </div>
-                                    <div>
-                                        {{ translate("cookie_description") }}:
-                                        {{
-                                            getTranslatedValue(
-                                                otherCookie.description
-                                            )
-                                        }}
-                                    </div>
-                                    <div>
-                                        {{ translate("cookie_duration") }}:
-                                        {{
-                                            getTranslatedValue(
-                                                otherCookie.duration
-                                            )
-                                        }}
-                                    </div>
+                            <div class="block__item__details" *ngIf="config('showCookieDetails') && other?.cookies.length > 0">
+                                <div class="detail__item" *ngFor="let otherCookie of other.cookies">
+                                    <div>{{ translate('cookie_name') }}: {{ otherCookie.name }}</div>
+                                    <div>{{ translate('cookie_description') }}: {{ translate_o(otherCookie.description) }}</div>
+                                    <div>{{ translate('cookie_duration') }}: {{ translate_o(otherCookie.duration) }}</div>
                                 </div>
                             </div>
                         </div>
@@ -677,58 +254,22 @@
             </div>
             <div class="ngx-cc__modal__footer text--center">
                 <div class="ngx-cc__modal__controls">
-                    <button
-                        class="secondary text--uppercase cc-accept-some"
-                        (click)="saveSomeCookies()"
-                    >
-                        {{ translate("save_text") }}
-                    </button>
-                    <button
-                        class="text--uppercase cc-deny"
-                        (click)="denyAllCookies()"
-                    >
-                        {{ translate("decline_text") }}
-                    </button>
-                    <button
-                        class="text--uppercase cc-accept-all"
-                        (click)="acceptAllCookies()"
-                    >
-                        {{ translate("accept_text") }}
-                    </button>
+                    <button class="secondary text--uppercase cc-accept-some" (click)="saveSomeCookies()">{{ translate('save_text') }}</button>
+                    <button class="text--uppercase cc-deny" (click)="denyAllCookies()">{{ translate('decline_text') }}</button>
+                    <button class="text--uppercase cc-accept-all" (click)="acceptAllCookies()">{{ translate('accept_text') }}</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div
-    class="ngx-cc__opener"
-    [ngClass]="['ngx-cc__opener-' + config('openerPosition')]"
-    *ngIf="!cookieConsentVisible && config('showBadgeOpener')"
-    (click)="cookieConsentVisible = true"
->
-    <svg
-        id="Layer_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        viewBox="0 0 120.23 122.88"
-        style="enable-background: new 0 0 120.23 122.88"
-        xml:space="preserve"
-    >
-        <style type="text/css">
-            .st0 {
-                fill-rule: evenodd;
-                clip-rule: evenodd;
-                fill: #ffffff;
-            }
-        </style>
-        <g>
-            <path
-                class="st0"
-                d="M98.18,0c3.3,0,5.98,2.68,5.98,5.98c0,3.3-2.68,5.98-5.98,5.98c-3.3,0-5.98-2.68-5.98-5.98 C92.21,2.68,94.88,0,98.18,0L98.18,0z M99.78,52.08c5.16,7.7,11.69,10.06,20.17,4.85c0.28,2.9,0.35,5.86,0.2,8.86 c-1.67,33.16-29.9,58.69-63.06,57.02C23.94,121.13-1.59,92.9,0.08,59.75C1.74,26.59,30.95,0.78,64.1,2.45 c-2.94,9.2-0.45,17.37,7.03,20.15C64.35,44.38,79.49,58.63,99.78,52.08L99.78,52.08z M30.03,47.79c4.97,0,8.99,4.03,8.99,8.99 s-4.03,8.99-8.99,8.99c-4.97,0-8.99-4.03-8.99-8.99S25.07,47.79,30.03,47.79L30.03,47.79z M58.35,59.25c2.86,0,5.18,2.32,5.18,5.18 c0,2.86-2.32,5.18-5.18,5.18c-2.86,0-5.18-2.32-5.18-5.18C53.16,61.57,55.48,59.25,58.35,59.25L58.35,59.25z M35.87,80.59 c3.49,0,6.32,2.83,6.32,6.32c0,3.49-2.83,6.32-6.32,6.32c-3.49,0-6.32-2.83-6.32-6.32C29.55,83.41,32.38,80.59,35.87,80.59 L35.87,80.59z M49.49,32.23c2.74,0,4.95,2.22,4.95,4.95c0,2.74-2.22,4.95-4.95,4.95c-2.74,0-4.95-2.22-4.95-4.95 C44.54,34.45,46.76,32.23,49.49,32.23L49.49,32.23z M76.39,82.8c4.59,0,8.3,3.72,8.3,8.3c0,4.59-3.72,8.3-8.3,8.3 c-4.59,0-8.3-3.72-8.3-8.3C68.09,86.52,71.81,82.8,76.39,82.8L76.39,82.8z M93.87,23.1c3.08,0,5.58,2.5,5.58,5.58 c0,3.08-2.5,5.58-5.58,5.58s-5.58-2.5-5.58-5.58C88.29,25.6,90.79,23.1,93.87,23.1L93.87,23.1z"
-            />
-        </g>
-    </svg>
+<div class="ngx-cc__opener" [ngClass]="['ngx-cc__opener-' + config('openerPosition')]" *ngIf="!cookieConsentVisible && config('showBadgeOpener')" (click)="cookieConsentVisible = true">
+    <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+         y="0px" viewBox="0 0 120.23 122.88" style="enable-background:new 0 0 120.23 122.88" xml:space="preserve"
+    ><style type="text/css">.st0 {
+        fill-rule: evenodd;
+        clip-rule: evenodd;
+        fill: #FFFFFF;
+    }</style>
+        <g><path class="st0" d="M98.18,0c3.3,0,5.98,2.68,5.98,5.98c0,3.3-2.68,5.98-5.98,5.98c-3.3,0-5.98-2.68-5.98-5.98 C92.21,2.68,94.88,0,98.18,0L98.18,0z M99.78,52.08c5.16,7.7,11.69,10.06,20.17,4.85c0.28,2.9,0.35,5.86,0.2,8.86 c-1.67,33.16-29.9,58.69-63.06,57.02C23.94,121.13-1.59,92.9,0.08,59.75C1.74,26.59,30.95,0.78,64.1,2.45 c-2.94,9.2-0.45,17.37,7.03,20.15C64.35,44.38,79.49,58.63,99.78,52.08L99.78,52.08z M30.03,47.79c4.97,0,8.99,4.03,8.99,8.99 s-4.03,8.99-8.99,8.99c-4.97,0-8.99-4.03-8.99-8.99S25.07,47.79,30.03,47.79L30.03,47.79z M58.35,59.25c2.86,0,5.18,2.32,5.18,5.18 c0,2.86-2.32,5.18-5.18,5.18c-2.86,0-5.18-2.32-5.18-5.18C53.16,61.57,55.48,59.25,58.35,59.25L58.35,59.25z M35.87,80.59 c3.49,0,6.32,2.83,6.32,6.32c0,3.49-2.83,6.32-6.32,6.32c-3.49,0-6.32-2.83-6.32-6.32C29.55,83.41,32.38,80.59,35.87,80.59 L35.87,80.59z M49.49,32.23c2.74,0,4.95,2.22,4.95,4.95c0,2.74-2.22,4.95-4.95,4.95c-2.74,0-4.95-2.22-4.95-4.95 C44.54,34.45,46.76,32.23,49.49,32.23L49.49,32.23z M76.39,82.8c4.59,0,8.3,3.72,8.3,8.3c0,4.59-3.72,8.3-8.3,8.3 c-4.59,0-8.3-3.72-8.3-8.3C68.09,86.52,71.81,82.8,76.39,82.8L76.39,82.8z M93.87,23.1c3.08,0,5.58,2.5,5.58,5.58 c0,3.08-2.5,5.58-5.58,5.58s-5.58-2.5-5.58-5.58C88.29,25.6,90.79,23.1,93.87,23.1L93.87,23.1z"/></g></svg>
 </div>

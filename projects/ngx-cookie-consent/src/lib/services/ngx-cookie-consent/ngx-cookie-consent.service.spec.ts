@@ -32,6 +32,22 @@ describe('NgxCookieConsentService', () => {
         expect(languageService.getTranslation).toHaveBeenCalledWith('test', 'de');
     });
 
+    it('should get a translationFromObject from languageService', () => {
+        const languageService = TestBed.inject(NgxLanguageService);
+        spyOn(languageService, 'getTranslationFromObject').and.returnValue('test');
+
+        expect(service.getTranslationFromObject('test')).toEqual('test');
+        expect(languageService.getTranslationFromObject).toHaveBeenCalledWith('test', 'en');
+    });
+
+    it('should get a translationFromObject from languageService with a different language', () => {
+        const languageService = TestBed.inject(NgxLanguageService);
+        spyOn(languageService, 'getTranslationFromObject').and.returnValue('test');
+
+        expect(service.getTranslationFromObject('test', 'de')).toEqual('test');
+        expect(languageService.getTranslationFromObject).toHaveBeenCalledWith('test', 'de');
+    });
+
     it('should get a config value', () => {
         expect(service.getConfig('defaultLanguage')).toEqual('en');
     });

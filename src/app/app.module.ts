@@ -21,15 +21,11 @@ import { RouterModule } from '@angular/router';
         RouterModule,
         AppRoutingModule,
         NgxCookieConsentModule.forRoot({
-            imprintUrl: {
-                en: 'https://www.example.com/imprint',
-                ptbr: 'https://www.example.com/imprint?l=ptbr',
-                default: 'https://www.example.com/imprint',
-            },
+            imprintUrl: 'https://www.example.com/imprint',
             privacyPolicyUrl: {
                 en: 'https://www.example.com/privacy-policy',
-                ptbr: 'https://www.example.com/privacy-policy?l=ptbr',
-                default: 'https://www.example.com/privacy-policy',
+                de: 'https://www.example.com/de/privacy-policy',
+                pt: 'https://www.example.com/pt/privacy-policy',
             },
             functionalCookies: functionalCookies,
             marketingCookies: marketingCookies,
