@@ -24,4 +24,21 @@ export class NgxLanguageService {
 
         return this.translations[this.translationKey][sanitizedKey] || '';
     }
+
+    getTranslationFromObject(obj: any, translationLang?: string): string {
+        if (typeof obj === 'string') {
+            return obj;
+        }
+
+        if (translationLang && obj.hasOwnProperty(translationLang)) {
+            return obj[translationLang];
+        }
+
+        const fallback = this.translationKey.replace('lang_', '');
+        if (obj.hasOwnProperty(fallback)) {
+            return obj[fallback];
+        }
+
+        return '';
+    }
 }

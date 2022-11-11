@@ -4,36 +4,38 @@ import { NgxCookieConsentModule } from 'projects/ngx-cookie-consent/src/public-a
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { essentialCookies, functionalCookies, marketingCookies, otherTools } from './cookie.config';
+import {
+    essentialCookies,
+    functionalCookies,
+    marketingCookies,
+    otherTools,
+} from './cookie.config';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        AboutComponent,
-    ],
+    declarations: [AppComponent, HomeComponent, AboutComponent],
     imports: [
         BrowserModule,
         RouterModule,
         AppRoutingModule,
         NgxCookieConsentModule.forRoot({
             imprintUrl: 'https://www.example.com/imprint',
-            privacyPolicyUrl: 'https://www.example.com/privacy-policy',
+            privacyPolicyUrl: {
+                en: 'https://www.example.com/privacy-policy',
+                de: 'https://www.example.com/de/privacy-policy',
+                pt: 'https://www.example.com/pt/privacy-policy',
+            },
             functionalCookies: functionalCookies,
             marketingCookies: marketingCookies,
             essentialCookies: essentialCookies,
             otherTools: otherTools,
             showCookieDetails: true,
-            excludeRoutes: ['/about']
+            excludeRoutes: ['/about'],
         }),
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

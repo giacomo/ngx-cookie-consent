@@ -24,6 +24,11 @@ export class NgxCookieConsentService {
         return this.languageService.getTranslation(key, lang);
     }
 
+    getTranslationFromObject(obj: any, translationLang?: string): string {
+        const lang = translationLang || this.activeLang;
+        return this.languageService.getTranslationFromObject(obj, lang);
+    }
+
     getConfig(key: string): any {
         return (this.cookieConsentConfig as any)[key];
     }

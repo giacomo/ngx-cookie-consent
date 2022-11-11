@@ -18,10 +18,11 @@ describe('NgxLanguageService', () => {
         const translations = service.translations;
 
         expect(translations).toBeTruthy();
-        expect(Object.keys(translations).length).toBe(3);
+        expect(Object.keys(translations).length).toBe(4);
         expect(translations.hasOwnProperty('lang_en')).toBeTruthy();
         expect(translations.hasOwnProperty('lang_de')).toBeTruthy();
         expect(translations.hasOwnProperty('lang_it')).toBeTruthy();
+        expect(translations.hasOwnProperty('lang_pt')).toBeTruthy();
     });
 
     it('should contain default language', () => {
@@ -44,5 +45,25 @@ describe('NgxLanguageService', () => {
     it('should return a translation for a specific language', () => {
         const translation = service.getTranslation('other_title', 'de');
         expect(translation).toBe('Andere');
+    });
+
+    it('should return a translation from an object for a specific language', () => {
+        const translation = service.getTranslationFromObject({en: 'Other', de: 'Andere'}, 'de');
+        expect(translation).toBe('Andere');
+    });
+
+    it('should return a translation from an object fallback language', () => {
+        const translation = service.getTranslationFromObject({en: 'Other', de: 'Andere'});
+        expect(translation).toBe('Other');
+    });
+
+    it('should return a translation from a string', () => {
+        const translation = service.getTranslationFromObject('Other');
+        expect(translation).toBe('Other');
+    });
+
+    it('should return a empty string translation from an object while no fallback language', () => {
+        const translation = service.getTranslationFromObject({fr: 'Autre'});
+        expect(translation).toBe('');
     });
 });

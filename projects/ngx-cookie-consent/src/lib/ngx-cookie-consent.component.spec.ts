@@ -146,6 +146,22 @@ describe('NgxCookieConsentComponent', () => {
         expect(consentServiceMock.getTranslation).toHaveBeenCalledWith('some key', 'en');
     });
 
+    it('should get translation for object from consent service', () => {
+        const consentServiceMock = TestBed.inject(NgxCookieConsentService);
+        spyOn(consentServiceMock, 'getTranslationFromObject').and.returnValue('some translation');
+
+        expect(component.translate_o('some key')).toEqual('some translation');
+        expect(consentServiceMock.getTranslationFromObject).toHaveBeenCalledWith('some key', undefined);
+    });
+
+    it('should get translation from consent service with language', () => {
+        const consentServiceMock = TestBed.inject(NgxCookieConsentService);
+        spyOn(consentServiceMock, 'getTranslationFromObject').and.returnValue('some translation');
+
+        expect(component.translate_o('some key', 'en')).toEqual('some translation');
+        expect(consentServiceMock.getTranslationFromObject).toHaveBeenCalledWith('some key', 'en');
+    });
+
     it('should get config from consent service', () => {
         const consentServiceMock = TestBed.inject(NgxCookieConsentService);
         spyOn(consentServiceMock, 'getConfig').and.returnValue('some config');

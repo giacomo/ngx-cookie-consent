@@ -12,8 +12,17 @@ export const marketingCookies = [
     {
         key: 'marketing_google_analytics',
         name: 'Google Analytics',
-        description: 'Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.',
-        privacyPolicyUrl: 'https://policies.google.com/privacy',
+        description: {
+            en: 'Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.',
+            de: 'Google Analytics ist ein Webanalysedienst von Google, der Website-Traffic erfasst und berichtet.',
+            pt: 'Google Analytics é um serviço de análise da web oferecido pela Google que rastreia e relata o tráfego do site.'
+        },
+        privacyPolicyUrl: {
+            en: 'https://policies.google.com/privacy',
+            de: 'https://policies.google.com/privacy?hl=de',
+            it: 'https://policies.google.com/privacy?hl=it',
+            pt: 'https://policies.google.com/privacy?hl=pt'
+        },
         cookies: [
             {
                 name: '_ga',
