@@ -18,10 +18,11 @@ describe('NgxLanguageService', () => {
         const translations = service.translations;
 
         expect(translations).toBeTruthy();
-        expect(Object.keys(translations).length).toBe(3);
+        expect(Object.keys(translations).length).toBe(4);
         expect(translations.hasOwnProperty('lang_en')).toBeTruthy();
         expect(translations.hasOwnProperty('lang_de')).toBeTruthy();
         expect(translations.hasOwnProperty('lang_it')).toBeTruthy();
+        expect(translations.hasOwnProperty('lang_pt')).toBeTruthy();
     });
 
     it('should contain default language', () => {
