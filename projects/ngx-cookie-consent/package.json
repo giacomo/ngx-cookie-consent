@@ -25,11 +25,11 @@
         "cookie-consent-banner"
     ],
     "peerDependencies": {
-        "@angular/common": "^17.2.0",
-        "@angular/core": "^17.2.0",
-        "@angular/forms": "^17.2.0",
-        "@angular/router": "^17.2.0",
-        "rxjs": "~7.5.0"
+        "@angular/common": "^17.1.3",
+        "@angular/core": "^17.1.3",
+        "@angular/forms": "^17.1.3",
+        "@angular/router": "^17.1.3",
+        "rxjs": "~7.8.0"
     },
     "dependencies": {
         "tslib": "^2.3.0"
