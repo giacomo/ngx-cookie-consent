@@ -7,6 +7,13 @@ Angular multi-language module to display a cookie consent banner without other d
 ###### Works with Angular v14+
 ###### Available languages: English, German, Italian, Portuguese
 
+## Versions
+| Version | Angular Version |
+|---------|-----------------|
+| v1.1.0  | Angular v14     |
+| v1.2.0  | Angular v15     |
+
+
 ## Installation
 
 ### Install the package via npm:

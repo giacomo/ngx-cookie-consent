@@ -4,7 +4,7 @@ Angular multi-language module to display a cookie consent banner without other d
 
 [![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https:///pr.new/github.com/giacomo/ngx-cookie-consent)
 
-###### Works with Angular v14+
+###### Works with Angular v14, v15
 ###### Available languages: English, German, Italian, Portuguese
 
 ## Installation
