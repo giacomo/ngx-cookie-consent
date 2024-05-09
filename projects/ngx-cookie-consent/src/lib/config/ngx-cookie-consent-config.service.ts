@@ -11,7 +11,7 @@ export class NgxCookieConsentConfigService {
     imprintUrl?: string | TranslatableString = '#';
     defaultLanguage?: string = 'en';
     availableLanguages?: string[] = ['en', 'de', 'it', 'pt'];
-    languages: { [key: string]: { [key: string]: string }} = languages;
+    languages?: { [key: string]: { [key: string]: string }} = languages;
     showLanguageSwitcher?: boolean = true;
     showBadgeOpener?: boolean = true;
     openerPosition?: 'left-top' | 'right-top' | 'left-bottom' | 'right-bottom' = 'left-bottom';

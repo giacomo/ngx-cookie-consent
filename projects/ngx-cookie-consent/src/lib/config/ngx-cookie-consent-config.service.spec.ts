@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import * as languages from '../languages';
 
 import { NgxCookieConsentConfigService } from './ngx-cookie-consent-config.service';
 
@@ -19,6 +20,7 @@ describe('NgxCookieConsentConfigService', () => {
         expect(service.imprintUrl).toEqual('#');
         expect(service.defaultLanguage).toEqual('en');
         expect(service.availableLanguages).toEqual(['en', 'de', 'it', 'pt']);
+        expect(service.languages).toEqual(languages);
         expect(service.showLanguageSwitcher).toEqual(true);
         expect(service.showBadgeOpener).toEqual(true);
         expect(service.openerPosition).toEqual('left-bottom');
