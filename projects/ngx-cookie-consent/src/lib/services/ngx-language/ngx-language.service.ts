@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import * as languages from './../../languages';
 import { NgxCookieConsentConfigService } from '../../config/ngx-cookie-consent-config.service';
 
 @Injectable({
@@ -11,7 +10,7 @@ export class NgxLanguageService {
 
     constructor(private config: NgxCookieConsentConfigService) {
         this.translationKey = 'lang_' + this.config.defaultLanguage;
-        this.translations = languages;
+        this.translations = this.config.languages;
     }
 
 
