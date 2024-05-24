@@ -5,7 +5,7 @@ Angular multi-language module to display a cookie consent banner without other d
 [![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https:///pr.new/github.com/giacomo/ngx-cookie-consent)
 
 ###### Works since Angular v14!
-###### Available languages: English, German, Italian, Portuguese
+###### Available languages: English, German, Italian, Portuguese, Francais
 
 ## Versions
 | Version | Angular Version              |
@@ -13,7 +13,7 @@ Angular multi-language module to display a cookie consent banner without other d
 | v1.1.0  | Angular v14 (not maintained) |
 | v1.2.0  | Angular v15 (not maintained) |
 | v1.3.0  | Angular v16 (not maintained) |
-| v2.0.0  | Angular v17 __*maintained*__ |
+| v2.0.0+ | Angular v17 __*maintained*__ |
 
 
 ## Installation
@@ -117,6 +117,7 @@ The `TranslatableString` interface is used to define a string that can be transl
 | de   | string | German string for the specified key     |
 | it   | string | Italian string for the specified key    |
 | pt   | string | Portuguese string for the specified key |
+| fr   | string | Francais string for the specified key   |
 
 ## Contributing
 

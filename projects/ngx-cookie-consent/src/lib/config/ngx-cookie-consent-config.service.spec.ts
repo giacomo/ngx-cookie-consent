@@ -18,7 +18,7 @@ describe('NgxCookieConsentConfigService', () => {
         expect(service.privacyPolicyUrl).toEqual('#');
         expect(service.imprintUrl).toEqual('#');
         expect(service.defaultLanguage).toEqual('en');
-        expect(service.availableLanguages).toEqual(['en', 'de', 'it', 'pt']);
+        expect(service.availableLanguages).toEqual(['en', 'de', 'it', 'pt', 'fr']);
         expect(service.showLanguageSwitcher).toEqual(true);
         expect(service.showBadgeOpener).toEqual(true);
         expect(service.openerPosition).toEqual('left-bottom');

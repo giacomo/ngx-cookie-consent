@@ -9,7 +9,7 @@ export class NgxCookieConsentConfigService {
     privacyPolicyUrl?: string | TranslatableString = '#';
     imprintUrl?: string | TranslatableString = '#';
     defaultLanguage?: string = 'en';
-    availableLanguages?: string[] = ['en', 'de', 'it', 'pt'];
+    availableLanguages?: string[] = ['en', 'de', 'it', 'pt', 'fr'];
     showLanguageSwitcher?: boolean = true;
     showBadgeOpener?: boolean = true;
     openerPosition?: 'left-top' | 'right-top' | 'left-bottom' | 'right-bottom' = 'left-bottom';
