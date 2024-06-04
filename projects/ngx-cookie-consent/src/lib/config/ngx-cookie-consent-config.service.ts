@@ -14,6 +14,7 @@ export class NgxCookieConsentConfigService {
     showBadgeOpener?: boolean = true;
     openerPosition?: 'left-top' | 'right-top' | 'left-bottom' | 'right-bottom' = 'left-bottom';
     customClass?: string = '';
+    customOpenerClass?: string = '';
     cookiePrefix?: string = 'cookieconsent_';
     cookieExpiryDays?: number = 365;
     showCookieDetails?: boolean = false;

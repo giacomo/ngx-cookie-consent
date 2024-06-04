@@ -1,4 +1,4 @@
-<div class="ngx-cc" *ngIf="cookieConsentVisible" (click)="closeDropDown($event)">
+<div class="ngx-cc" *ngIf="cookieConsentVisible" (click)="closeDropDown($event)" [ngClass]="config('customClass')">
     <div class="ngx-cc__wrapper">
         <div class="ngx-cc__modal" *ngIf="!showSettingsDialog">
             <div class="ngx-cc__modal_language-switcher" *ngIf="config('showLanguageSwitcher')">
@@ -263,7 +263,7 @@
     </div>
 </div>
 
-<div class="ngx-cc__opener" [ngClass]="['ngx-cc__opener-' + config('openerPosition')]" *ngIf="!cookieConsentVisible && config('showBadgeOpener')" (click)="cookieConsentVisible = true">
+<div class="ngx-cc__opener" [ngClass]="['ngx-cc__opener-' + config('openerPosition'), config('customOpenerClass')]" *ngIf="!cookieConsentVisible && config('showBadgeOpener')" (click)="cookieConsentVisible = true">
     <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
          y="0px" viewBox="0 0 120.23 122.88" style="enable-background:new 0 0 120.23 122.88" xml:space="preserve"
     ><style type="text/css">.st0 {

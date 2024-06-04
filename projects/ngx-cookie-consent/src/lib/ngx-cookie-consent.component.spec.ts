@@ -50,6 +50,52 @@ describe('NgxCookieConsentComponent', () => {
         expect(component.otherToolsClosed).toBeTrue();
     });
 
+    it('should contain custom class from config', () => {
+        const configMock = TestBed.inject(NgxCookieConsentService);
+        configMock.setConfig('customClass', 'custom-class');
+        component.cookieConsentVisible = true;
+
+        fixture.detectChanges();
+
+        const renderedElement = fixture.nativeElement as HTMLElement;
+        expect(renderedElement.querySelector('.ngx-cc')?.classList.length).toBe(2);
+        expect(renderedElement.querySelector('.ngx-cc')?.classList.contains('custom-class')).toBeTrue();
+    });
+
+    it('should not contain custom class from config if class is empty', () => {
+        const configMock = TestBed.inject(NgxCookieConsentService);
+        configMock.setConfig('customClass', '');
+        component.cookieConsentVisible = true;
+
+        fixture.detectChanges();
+
+        const renderedElement = fixture.nativeElement as HTMLElement;
+        expect(renderedElement.querySelector('.ngx-cc')?.classList.length).toBe(1);
+    });
+
+    it('should contain custom opener class from config', () => {
+        const configMock = TestBed.inject(NgxCookieConsentService);
+        configMock.setConfig('customOpenerClass', 'custom-opener-class');
+        component.cookieConsentVisible = false;
+
+        fixture.detectChanges();
+
+        const renderedElement = fixture.nativeElement as HTMLElement;
+        expect(renderedElement.querySelector('.ngx-cc__opener')?.classList.length).toBe(3);
+        expect(renderedElement.querySelector('.ngx-cc__opener')?.classList.contains('custom-opener-class')).toBeTrue
+    });
+
+    it('should not contain custom opener class from config if class is empty', () => {
+        const configMock = TestBed.inject(NgxCookieConsentService);
+        configMock.setConfig('customOpenerClass', '');
+        component.cookieConsentVisible = false;
+
+        fixture.detectChanges();
+
+        const renderedElement = fixture.nativeElement as HTMLElement;
+        expect(renderedElement.querySelector('.ngx-cc__opener')?.classList.length).toBe(2);
+    });
+
     it('should get activeLang from config', () => {
         const configMock = TestBed.inject(NgxCookieConsentService);
         spyOn(configMock, 'getConfig').and.returnValue('en');

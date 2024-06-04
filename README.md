@@ -73,6 +73,7 @@ import { NgxCookieConsentModule } from '@localia/ngx-cookie-consent';
 | showLanguageSwitcher  | boolean                          | true               | Show language switcher                                                             |
 | showBadgeOpener       | boolean                          | true               | Show badge opener                                                                  |
 | openerPosition        | enum                             | 'left-bottom'      | Position of the badge eg. 'left-top', 'right-top' , 'left-bottom' , 'right-bottom' |
+| customOpenerClass     | string                           | ''                 | Custom class for the badge opener                                                  |
 | customClass           | string                           | ''                 | Custom class for the cookie consent banner                                         |
 | cookiePrefix          | string                           | 'cookieconsent_'   | Prefix for the cookie consent banner                                               |
 | cookieExpiryDays      | number                           | 365                | Expiry days for the cookie consent banner                                          |
