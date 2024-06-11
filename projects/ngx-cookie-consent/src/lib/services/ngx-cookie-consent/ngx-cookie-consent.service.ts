@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { NgxCookieConsentConfigService } from '../../config/ngx-cookie-consent-config.service';
+import { NgxCookieManagerService } from '../ngx-cookie-manager/ngx-cookie-manager.service';
 import { NgxCookieService } from '../ngx-cookie/ngx-cookie.service';
 import { NgxLanguageService } from '../ngx-language/ngx-language.service';
-import { NgxCookieManagerService } from '../ngx-cookie-manager/ngx-cookie-manager.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class NgxCookieConsentService {
     activeLang = 'en';
+
+    private cookieState$ = new BehaviorSubject<{ [key: string]: boolean; }>({});
 
     constructor(
         private cookieManagerService: NgxCookieManagerService,
@@ -37,11 +40,11 @@ export class NgxCookieConsentService {
         return this.getConfig('cookiePrefix') + name;
     }
 
-    getCookieFields(): {functional: {key: string, selected: boolean}[], marketing: {key: string, selected: boolean}[]} {
+    getCookieFields(): { functional: { key: string, selected: boolean; }[], marketing: { key: string, selected: boolean; }[]; } {
         const functionalCookies = this.getCookiesByCategory('functionalCookies');
         const marketingCookies = this.getCookiesByCategory('marketingCookies');
 
-        return {functional: functionalCookies, marketing: marketingCookies};
+        return { functional: functionalCookies, marketing: marketingCookies };
     }
 
     setLanguage(lang: string): void {
@@ -71,6 +74,7 @@ export class NgxCookieConsentService {
             return this.cookieService.delete(this.getPrefixedCookieName(name));
         }
 
+        this.cookieState$.next({ name: status });
         this.cookieService.set(this.getPrefixedCookieName(name), status, this.getConfig('cookieExpiryDays'));
     }
 
@@ -104,7 +108,7 @@ export class NgxCookieConsentService {
         this.setCookieConsentStatus(true);
     }
 
-    saveSomeCookies(cookies: { functional: any, marketing: any } ): void {
+    saveSomeCookies(cookies: { functional: any, marketing: any; }): void {
         Object.keys(cookies.functional).forEach((cookie: any) => {
             this.setCookieConsentStatusForCookie(cookie, cookies.functional[cookie]);
         });
@@ -116,7 +120,11 @@ export class NgxCookieConsentService {
         this.setCookieConsentStatus(true);
     }
 
-    private getCookiesByCategory(category: string): {key: string, selected: boolean}[] {
+    cookieStateChanged(): BehaviorSubject<{ [key: string]: boolean; }> {
+        return this.cookieState$;
+    }
+
+    private getCookiesByCategory(category: string): { key: string, selected: boolean; }[] {
         return this.getConfig(category).map((cookie: any) => {
             const cookieKey = cookie.key;
             const cookieState = this.cookieService.get(this.getPrefixedCookieName(cookie.key)) === true;

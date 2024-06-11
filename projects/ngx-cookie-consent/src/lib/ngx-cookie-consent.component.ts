@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { NgxCookieConsentService } from './services/ngx-cookie-consent/ngx-cookie-consent.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { NgxCookieConsentService } from './services/ngx-cookie-consent/ngx-cookie-consent.service';
 
 @Component({
     selector: 'ngx-cookie-consent',
@@ -10,6 +10,7 @@ import { filter } from 'rxjs';
     styleUrls: ['./ngx-cookie-consent.component.scss'],
 })
 export class NgxCookieConsentComponent implements OnInit {
+    cookieStateChanged = new EventEmitter<boolean>(false);
     cookieConsentVisible = false;
     showSettingsDialog = false;
     dropDownOpen = false;
@@ -19,8 +20,8 @@ export class NgxCookieConsentComponent implements OnInit {
     otherToolsClosed = true;
     cookieForm: FormGroup;
     private cookieFields: {
-        functional: { key: string; selected: boolean }[],
-        marketing: { key: string; selected: boolean }[],
+        functional: { key: string; selected: boolean; }[],
+        marketing: { key: string; selected: boolean; }[],
     };
 
     constructor(
@@ -107,17 +108,20 @@ export class NgxCookieConsentComponent implements OnInit {
     denyAllCookies() {
         this.resetModal();
         this.consentService.denyAllCookies();
+        this.cookieStateChanged.emit(false);
         this.resetForm();
     }
 
     acceptAllCookies() {
         this.resetModal();
         this.consentService.acceptAllCookies();
+        this.cookieStateChanged.emit(true);
         this.resetForm();
     }
 
     saveSomeCookies() {
         this.consentService.saveSomeCookies(this.cookieForm.value);
+        this.cookieStateChanged.emit(true);
         this.resetModal();
     }
 
@@ -128,7 +132,7 @@ export class NgxCookieConsentComponent implements OnInit {
         });
     }
 
-    private buildCookieFields(fields: { key: string; selected: boolean }[]) {
+    private buildCookieFields(fields: { key: string; selected: boolean; }[]) {
         const group: any = {};
         fields.forEach((field) => {
             group[field.key] = this.formBuilder.control(field.selected);
