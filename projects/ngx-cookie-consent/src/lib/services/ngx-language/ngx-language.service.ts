@@ -12,6 +12,17 @@ export class NgxLanguageService {
     constructor(private config: NgxCookieConsentConfigService) {
         this.translationKey = 'lang_' + this.config.defaultLanguage;
         this.translations = languages;
+
+        if (config.customLanguage !== null && config.customLanguage !== undefined) {
+            this.translations = {
+                ...this.translations,
+                ...{
+                     ['lang_' + config.customLanguage?.languageKey]: {
+                        ...config.customLanguage?.translations
+                     }
+                }
+            };
+        }
     }
 
 

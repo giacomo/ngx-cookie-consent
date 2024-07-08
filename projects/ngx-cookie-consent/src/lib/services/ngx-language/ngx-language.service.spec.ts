@@ -1,12 +1,24 @@
 import { TestBed } from '@angular/core/testing';
 
 import { NgxLanguageService } from './ngx-language.service';
+import { NgxCookieConsentConfigService } from '../../config/ngx-cookie-consent-config.service';
 
 describe('NgxLanguageService', () => {
     let service: NgxLanguageService;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({});
+        TestBed.configureTestingModule({
+            providers: [
+                {provide: NgxCookieConsentConfigService, useValue: {
+                    customLanguage: {
+                        languageKey: 'xx',
+                        translations: {
+                            other_title: 'Andere'
+                        }
+                    }
+                }}
+            ]
+        });
         service = TestBed.inject(NgxLanguageService);
     });
 
@@ -18,12 +30,13 @@ describe('NgxLanguageService', () => {
         const translations = service.translations;
 
         expect(translations).toBeTruthy();
-        expect(Object.keys(translations).length).toBe(5);
+        expect(Object.keys(translations).length).toBe(6);
         expect(translations.hasOwnProperty('lang_en')).toBeTruthy();
         expect(translations.hasOwnProperty('lang_de')).toBeTruthy();
         expect(translations.hasOwnProperty('lang_it')).toBeTruthy();
         expect(translations.hasOwnProperty('lang_pt')).toBeTruthy();
         expect(translations.hasOwnProperty('lang_fr')).toBeTruthy();
+        expect(translations.hasOwnProperty('lang_xx')).toBeTruthy();
     });
 
     it('should contain default language', () => {
