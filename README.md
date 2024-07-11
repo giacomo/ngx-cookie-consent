@@ -64,29 +64,39 @@ import { NgxCookieConsentModule } from '@localia/ngx-cookie-consent';
 
 ## Configuration
 
-| Name                  | Type                             | Default            | Description                                                                        |
-|-----------------------|----------------------------------|--------------------|------------------------------------------------------------------------------------|
-| privacyPolicyUrl      | string &#124; TranslatableString | '#'                | URL to your privacy policy ⚠ required ⚠                                            |
-| imprintUrl            | string &#124; TranslatableString | '#'                | URL to your imprint ⚠ required ⚠                                                   |
-| defaultLanguage       | string                           | 'en'               | Default language for the cookie consent banner                                     |
-| availableLanguages    | string[]                         | ['en', 'de', 'it'] | Available languages for the cookie consent banner                                  |
-| showLanguageSwitcher  | boolean                          | true               | Show language switcher                                                             |
-| showBadgeOpener       | boolean                          | true               | Show badge opener                                                                  |
-| openerPosition        | enum                             | 'left-bottom'      | Position of the badge eg. 'left-top', 'right-top' , 'left-bottom' , 'right-bottom' |
-| customOpenerClass     | string                           | ''                 | Custom class for the badge opener                                                  |
-| customClass           | string                           | ''                 | Custom class for the cookie consent banner                                         |
-| cookiePrefix          | string                           | 'cookieconsent_'   | Prefix for the cookie consent banner                                               |
-| cookieExpiryDays      | number                           | 365                | Expiry days for the cookie consent banner                                          |
-| showCookieDetails     | boolean                          | false              | Show cookie details                                                                |
-| showFunctionalCookies | boolean                          | true               | Show functional cookies                                                            |
-| functionalCookies     | CookieItem[]                     | []                 | Functional cookies                                                                 |
-| showMarketingCookies  | boolean                          | true               | Show marketing cookies                                                             |
-| marketingCookies      | CookieItem[]                     | []                 | Marketing cookies                                                                  |
-| showEssentialCookies  | boolean                          | true               | Show essential cookies                                                             |
-| essentialCookies      | CookieItem[]                     | []                 | Essential cookies                                                                  |
-| showOtherTools        | boolean                          | true               | Show other tools                                                                   |
-| otherTools            | CookieItem[]                     | []                 | Other tools                                                                        |
-| excludeRoutes         | string[]                         | []                 | Exclude routes eg. ['/privacy-policy']                                             |
+| Name                  | Type                              | Default           | Description                                                                        |
+|-----------------------|-----------------------------------|-------------------|------------------------------------------------------------------------------------|
+| privacyPolicyUrl      | string &#124; TranslatableString  | '#'               | URL to your privacy policy ⚠ required ⚠                                            |
+| imprintUrl            | string &#124; TranslatableString  | '#'               | URL to your imprint ⚠ required ⚠                                                   |
+| defaultLanguage       | string                            | 'en'              | Default language for the cookie consent banner                                     |
+| availableLanguages    | string[]                          | ['en', 'de', 'it'] | Available languages for the cookie consent banner                                  |
+| customLanguage        | CustomLanguageConfig  &#124; null | null               | Custom language for the cookie consent banner                                      |
+| showLanguageSwitcher  | boolean                           | true              | Show language switcher                                                             |
+| showBadgeOpener       | boolean                           | true              | Show badge opener                                                                  |
+| openerPosition        | enum                              | 'left-bottom'     | Position of the badge eg. 'left-top', 'right-top' , 'left-bottom' , 'right-bottom' |
+| customOpenerClass     | string                            | ''                | Custom class for the badge opener                                                  |
+| customClass           | string                            | ''                | Custom class for the cookie consent banner                                         |
+| cookiePrefix          | string                            | 'cookieconsent_'  | Prefix for the cookie consent banner                                               |
+| cookieExpiryDays      | number                            | 365               | Expiry days for the cookie consent banner                                          |
+| showCookieDetails     | boolean                           | false             | Show cookie details                                                                |
+| showFunctionalCookies | boolean                           | true              | Show functional cookies                                                            |
+| functionalCookies     | CookieItem[]                      | []                | Functional cookies                                                                 |
+| showMarketingCookies  | boolean                           | true              | Show marketing cookies                                                             |
+| marketingCookies      | CookieItem[]                      | []                | Marketing cookies                                                                  |
+| showEssentialCookies  | boolean                           | true              | Show essential cookies                                                             |
+| essentialCookies      | CookieItem[]                      | []                | Essential cookies                                                                  |
+| showOtherTools        | boolean                           | true              | Show other tools                                                                   |
+| otherTools            | CookieItem[]                      | []                | Other tools                                                                        |
+| excludeRoutes         | string[]                          | []                | Exclude routes eg. ['/privacy-policy']                                             |
+
+###  CustomLanguageConfig interface
+| Name           | Type                                     | Description                                                                               |
+|----------------|------------------------------------------|-------------------------------------------------------------------------------------------|
+| languageKey    | string                                   | Key for the custom language eg. 'custom'                                                  |
+| languageName   | string                                   | Name for the custom language eg. 'Custom'                                                 |
+| customIconPath | string &#124; null                       | Path to the custom icon eg. 'assets/images/custom-icon.svg'                               |
+| translations   | translations: { [key: string]: string }; | Translations for the custom language as object please copy a example in languages folder. |
+
 
 ### CookieItem interface
 
