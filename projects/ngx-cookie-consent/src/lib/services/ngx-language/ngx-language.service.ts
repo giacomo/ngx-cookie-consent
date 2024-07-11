@@ -12,6 +12,17 @@ export class NgxLanguageService {
     constructor(private config: NgxCookieConsentConfigService) {
         this.translationKey = 'lang_' + this.config.defaultLanguage;
         this.translations = languages;
+
+        if (config.customLanguage !== null && config.customLanguage !== undefined) {
+            this.translations = {
+                ...this.translations,
+                ...{
+                     ['lang_' + config.customLanguage?.languageKey]: {
+                        ...this.sanitizeCustomTranslations(config.customLanguage?.translations)
+                     }
+                }
+            };
+        }
     }
 
 
@@ -40,5 +51,19 @@ export class NgxLanguageService {
         }
 
         return '';
+    }
+
+    private sanitizeCustomTranslations(translations: { [p: string]: string } | undefined): { [p: string]: string } {
+        if (!translations) {
+            return {};
+        }
+
+        // get default english translations merge with custom translations
+        const defaultTranslations = this.translations['lang_en'];
+
+        return {
+            ...defaultTranslations,
+            ...translations
+        };
     }
 }

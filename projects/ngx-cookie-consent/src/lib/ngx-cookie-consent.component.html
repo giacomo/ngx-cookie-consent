@@ -16,6 +16,14 @@
                                 <i class="flag-icon flag-{{ lang }}"></i> {{ translate('language', lang) }}
                             </div>
                         </div>
+                        <div class="dropdown__item" *ngIf="customLanguage"
+                             [ngClass]="{'dropdown__item--active': activeLang === customLanguage.languageKey}">
+                            <div class="dropdown__item_text" (click)="switchLanguage(customLanguage.languageKey)">
+                                <i class="flag-icon flag-custom">
+                                    <img *ngIf="customLanguage.customIconPath" [src]="customLanguage.customIconPath" alt="{{ customLanguage.languageKey }}" width="34px" height="26px">
+                                </i> {{ customLanguage.languageName }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

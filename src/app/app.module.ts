@@ -27,6 +27,14 @@ import { RouterModule } from '@angular/router';
                 de: 'https://www.example.com/de/privacy-policy',
                 pt: 'https://www.example.com/pt/privacy-policy',
             },
+            customLanguage: {
+                languageKey: 'xx',
+                languageName: 'Custom',
+                customIconPath: null,
+                translations: {
+                    back_text: 'Backxx',
+                }
+            },
             functionalCookies: functionalCookies,
             marketingCookies: marketingCookies,
             essentialCookies: essentialCookies,
