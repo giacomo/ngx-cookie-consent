@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgxCookieConsentService } from './services/ngx-cookie-consent/ngx-cookie-consent.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { CustomLanguageConfig } from './config/custom-language-config.interface';
 
 @Component({
     selector: 'ngx-cookie-consent',
@@ -48,6 +49,10 @@ export class NgxCookieConsentComponent implements OnInit {
 
     get availableLanguages(): string[] {
         return this.consentService.getConfig('availableLanguages');
+    }
+
+    get customLanguage(): CustomLanguageConfig | null {
+        return this.consentService.getConfig('customLanguage');
     }
 
     get functionalCookiesAllSelected(): boolean {
