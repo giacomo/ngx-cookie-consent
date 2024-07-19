@@ -1,6 +1,6 @@
 {
     "name": "@localia/ngx-cookie-consent",
-    "version": "2.3.0",
+    "version": "3.0.0",
     "description": "Angular module to display a cookie consent banner without other dependencies.",
     "author": "Giacomo Barbalinardo <me@giacomo.dev>",
     "license": "MIT",
@@ -25,10 +25,10 @@
         "cookie-consent-banner"
     ],
     "peerDependencies": {
-        "@angular/common": "^17.0.0",
-        "@angular/core": "^17.0.0",
-        "@angular/forms": "^17.0.0",
-        "@angular/router": "^17.0.0",
+        "@angular/common": "^18.0.0",
+        "@angular/core": "^18.0.0",
+        "@angular/forms": "^18.0.0",
+        "@angular/router": "^18.0.0",
         "rxjs": "^7.4.0"
     },
     "dependencies": {
