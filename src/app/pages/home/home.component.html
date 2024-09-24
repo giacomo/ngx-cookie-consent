@@ -3,6 +3,13 @@
 
     <p>This is just a demo-Page, choose the navigation to change the page.</p>
 
+    <p>
+        Current language: {{ currentLanguage }}
+    </p>
+
+    <button (click)="switchLanguage('en')">Switch language: EN</button>
+    <button (click)="switchLanguage('de')">Switch language: DE</button>
+
     <div class="menu">
         <ul>
             <li><a [routerLink]="'/'">Home</a></li>

@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { NgxCookieConsentService } from './services/ngx-cookie-consent/ngx-cookie-consent.service';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { Subject } from 'rxjs';
+import { NgxCookieEventbusService } from './services/ngx-cookie-eventbus/ngx-cookie-eventbus.service';
 
 describe('NgxCookieConsentComponent', () => {
     let component: NgxCookieConsentComponent;
@@ -221,6 +222,8 @@ describe('NgxCookieConsentComponent', () => {
         spyOn(consentServiceMock, 'setLanguage').and.returnValue();
 
         component.dropDownOpen = true;
+
+
         component.switchLanguage('en');
 
         expect(consentServiceMock.setLanguage).toHaveBeenCalledWith('en');

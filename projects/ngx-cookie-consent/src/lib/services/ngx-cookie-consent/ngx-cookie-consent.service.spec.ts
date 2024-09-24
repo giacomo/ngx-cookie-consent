@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { NgxCookieConsentService } from './ngx-cookie-consent.service';
 import { NgxLanguageService } from '../ngx-language/ngx-language.service';
 import { NgxCookieService } from '../ngx-cookie/ngx-cookie.service';
+import { NgxCookieEventbusService } from '../ngx-cookie-eventbus/ngx-cookie-eventbus.service';
 
 describe('NgxCookieConsentService', () => {
     let service: NgxCookieConsentService;
@@ -76,11 +77,15 @@ describe('NgxCookieConsentService', () => {
     });
 
     it('should set the language', () => {
+        const eventbusService = TestBed.inject(NgxCookieEventbusService);
+        spyOn(eventbusService.languageUpdatedSubject, 'next').and.returnValue();
+
         spyOn(service, 'setConfig').and.returnValue();
 
         service.setLanguage('de');
         expect(service.activeLang).toEqual('de');
         expect(service.setConfig).toHaveBeenCalledWith('defaultLanguage', 'de');
+        expect(eventbusService.languageUpdatedSubject.next).toHaveBeenCalledWith('de');
     });
 
     it('should set a config value', () => {

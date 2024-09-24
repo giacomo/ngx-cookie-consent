@@ -3,20 +3,29 @@ import { NgxCookieConsentConfigService } from '../../config/ngx-cookie-consent-c
 import { NgxCookieService } from '../ngx-cookie/ngx-cookie.service';
 import { NgxLanguageService } from '../ngx-language/ngx-language.service';
 import { NgxCookieManagerService } from '../ngx-cookie-manager/ngx-cookie-manager.service';
+import { NgxCookieEventbusService } from '../ngx-cookie-eventbus/ngx-cookie-eventbus.service';
+import { Subscription } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class NgxCookieConsentService {
+    private langChangedSubscription: Subscription;
     activeLang = 'en';
 
     constructor(
         private cookieManagerService: NgxCookieManagerService,
         private cookieService: NgxCookieService,
         private cookieConsentConfig: NgxCookieConsentConfigService,
-        private languageService: NgxLanguageService
+        private languageService: NgxLanguageService,
+        private cookieEventbusService: NgxCookieEventbusService,
     ) {
         this.activeLang = this.getConfig('defaultLanguage');
+        this.langChangedSubscription = this.cookieEventbusService.languageChanged$.subscribe({
+            next: () => {
+                this.activeLang = this.getConfig('defaultLanguage');
+            }
+        });
     }
 
     getTranslation(key: string, translationLang?: string): string {
@@ -47,6 +56,9 @@ export class NgxCookieConsentService {
     setLanguage(lang: string): void {
         this.activeLang = lang;
         this.setConfig('defaultLanguage', lang);
+        console.log('test');
+        this.cookieEventbusService.languageUpdatedSubject.next(lang);
+        console.log('test2');
     }
 
     setConfig(key: string, value: string): void {
