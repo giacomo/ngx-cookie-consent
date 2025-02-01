@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .ngx-cc {
     box-sizing: border-box;
     position: fixed;
@@ -25,14 +27,14 @@
         width: 40px;
         height: 50px;
         padding: 12px 6px;
-        border: 1px solid lighten(#388edc, 10%);
+        border: 1px solid color.scale(#388edc, $lightness: 10%);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         background-color: #388edc;
         cursor: pointer;
         box-sizing: border-box;
 
         &:hover {
-            background-color: darken(#388edc, 10%);
+            background-color: color.scale(#388edc, $lightness: -10%);
         }
 
         svg {

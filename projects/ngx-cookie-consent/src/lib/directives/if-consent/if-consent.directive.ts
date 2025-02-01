@@ -3,7 +3,8 @@ import { NgxCookieManagerService } from '../../services/ngx-cookie-manager/ngx-c
 import { filter } from 'rxjs';
 
 @Directive({
-  selector: '[ngxIfConsent]'
+    selector: '[ngxIfConsent]',
+    standalone: false
 })
 export class IfConsentDirective implements OnInit, OnDestroy {
     private cookieName!: string;

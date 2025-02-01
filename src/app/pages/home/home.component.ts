@@ -4,7 +4,8 @@ import { NgxCookieManagerService } from 'projects/ngx-cookie-consent/src/public-
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+    styleUrls: ['./home.component.scss'],
+    standalone: false
 })
 export class HomeComponent implements OnInit {
 

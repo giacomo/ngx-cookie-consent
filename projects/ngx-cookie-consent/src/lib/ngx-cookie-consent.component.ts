@@ -9,6 +9,7 @@ import { CustomLanguageConfig } from './config/custom-language-config.interface'
     selector: 'ngx-cookie-consent',
     templateUrl: './ngx-cookie-consent.component.html',
     styleUrls: ['./ngx-cookie-consent.component.scss'],
+    standalone: false
 })
 export class NgxCookieConsentComponent implements OnInit {
     cookieConsentVisible = false;

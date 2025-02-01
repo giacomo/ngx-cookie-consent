@@ -14,7 +14,8 @@ Angular multi-language module to display a cookie consent banner without other d
 | v1.2.0  | Angular v15 (not maintained) |
 | v1.3.0  | Angular v16 (not maintained) |
 | v2.0.0  | Angular v17 (not maintained) |
-| v3.0.0+ | Angular v18 __*maintained*__ |
+| v3.0.0  | Angular v18 (not maintained) |
+| v4.0.0+ | Angular v19 __*maintained*__ |
 
 
 ## Installation
