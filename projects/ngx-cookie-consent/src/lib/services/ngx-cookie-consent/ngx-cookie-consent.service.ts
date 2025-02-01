@@ -56,9 +56,7 @@ export class NgxCookieConsentService {
     setLanguage(lang: string): void {
         this.activeLang = lang;
         this.setConfig('defaultLanguage', lang);
-        console.log('test');
         this.cookieEventbusService.languageUpdatedSubject.next(lang);
-        console.log('test2');
     }
 
     setConfig(key: string, value: string): void {
