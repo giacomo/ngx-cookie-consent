@@ -1,6 +1,6 @@
 {
     "name": "@localia/ngx-cookie-consent",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "description": "Angular module to display a cookie consent banner without other dependencies.",
     "author": "Giacomo Barbalinardo <me@giacomo.dev>",
     "license": "MIT",
