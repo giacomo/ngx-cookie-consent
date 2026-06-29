@@ -80,6 +80,7 @@ import { NgxCookieConsentModule } from '@localia/ngx-cookie-consent';
 | customClass           | string                            | ''                | Custom class for the cookie consent banner                                         |
 | cookiePrefix          | string                            | 'cookieconsent_'  | Prefix for the cookie consent banner                                               |
 | cookieExpiryDays      | number                            | 365               | Expiry days for the cookie consent banner                                          |
+| cookieSameSite        | 'Lax' &#124; 'Strict' &#124; 'None' | 'None'             | SameSite attribute for the cookie consent banner                                |
 | showCookieDetails     | boolean                           | false             | Show cookie details                                                                |
 | showFunctionalCookies | boolean                           | true              | Show functional cookies                                                            |
 | functionalCookies     | CookieItem[]                      | []                | Functional cookies                                                                 |
