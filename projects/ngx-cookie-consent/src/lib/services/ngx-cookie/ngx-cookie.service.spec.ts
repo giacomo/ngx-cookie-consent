@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { NgxCookieService } from './ngx-cookie.service';
+import { NgxCookieConsentConfigService } from '../../config/ngx-cookie-consent-config.service';
 
 describe('NgxCookieService', () => {
     beforeEach(() => {
@@ -57,5 +58,35 @@ describe('NgxCookieService', () => {
         service.delete('keyname');
 
         expect(service.get('keyname')).toBeFalsy();
+    });
+
+    it('should set cookie with default SameSite=None and Secure', () => {
+        const cookieSpy = spyOnProperty(document, 'cookie', 'set');
+        const service = TestBed.inject(NgxCookieService);
+        service.set('test', 'value');
+
+        expect(cookieSpy).toHaveBeenCalledWith(jasmine.stringContaining('SameSite=None; Secure;'));
+    });
+
+    it('should set cookie with configured SameSite=Lax and Secure', () => {
+        const config = TestBed.inject(NgxCookieConsentConfigService);
+        config.cookieSameSite = 'Lax';
+
+        const cookieSpy = spyOnProperty(document, 'cookie', 'set');
+        const service = TestBed.inject(NgxCookieService);
+        service.set('test', 'value');
+
+        expect(cookieSpy).toHaveBeenCalledWith(jasmine.stringContaining('SameSite=Lax; Secure;'));
+    });
+
+    it('should set cookie with configured SameSite=Strict and Secure', () => {
+        const config = TestBed.inject(NgxCookieConsentConfigService);
+        config.cookieSameSite = 'Strict';
+
+        const cookieSpy = spyOnProperty(document, 'cookie', 'set');
+        const service = TestBed.inject(NgxCookieService);
+        service.set('test', 'value');
+
+        expect(cookieSpy).toHaveBeenCalledWith(jasmine.stringContaining('SameSite=Strict; Secure;'));
     });
 });

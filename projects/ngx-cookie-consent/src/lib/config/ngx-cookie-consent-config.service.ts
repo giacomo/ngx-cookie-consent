@@ -19,6 +19,7 @@ export class NgxCookieConsentConfigService {
     customOpenerClass?: string = '';
     cookiePrefix?: string = 'cookieconsent_';
     cookieExpiryDays?: number = 365;
+    cookieSameSite?: 'None' | 'Lax' | 'Strict' = 'None';
     showCookieDetails?: boolean = false;
     showFunctionalCookies?: boolean = true;
     functionalCookies?: CookieItem[] = [];

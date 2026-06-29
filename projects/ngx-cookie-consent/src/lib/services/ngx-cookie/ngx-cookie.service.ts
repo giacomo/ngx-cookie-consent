@@ -1,5 +1,6 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, InjectionToken, PLATFORM_ID } from '@angular/core';
+import { NgxCookieConsentConfigService } from '../../config/ngx-cookie-consent-config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class NgxCookieService {
   constructor(
     @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: InjectionToken<Object>,
+    private config: NgxCookieConsentConfigService,
   ) {
     this.documentIsAccessible = isPlatformBrowser(this.platformId);
   }
@@ -69,7 +71,7 @@ export class NgxCookieService {
       const dateExpires: Date = new Date( new Date().getTime() + expiringDays * 86400000);
       cookieString += 'expires=' + dateExpires.toUTCString() + ';';
       cookieString += 'path=' + path + ';';
-      cookieString += 'SameSite=Lax; Secure;';
+      cookieString += this.sameSiteString();
 
       this.document.cookie = cookieString;
   }
@@ -83,9 +85,13 @@ export class NgxCookieService {
 
       cookieString += 'expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       cookieString += 'path=' + path + ';';
-      cookieString += 'SameSite=Lax; Secure;';
+      cookieString += this.sameSiteString();
 
       this.document.cookie = cookieString;
+  }
+
+  private sameSiteString(): string {
+      return `SameSite=${this.config.cookieSameSite}; Secure;`;
   }
 
   /**
